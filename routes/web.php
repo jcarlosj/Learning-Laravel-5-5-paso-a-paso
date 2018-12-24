@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route :: get( '/contacto', function() {
     return 'Contacto';
 });
+
+Route :: get( '/usuarios/detalles', function() {
+    return 'id: ' .$_GET[ 'id' ];
+});
