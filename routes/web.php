@@ -19,10 +19,11 @@ Route :: get( '/contacto', function() {
     return 'Contacto';
 });
 
-// Pasando parámetros dinámicos a una ruta
+// Pasando parámetros dinámicos a una ruta 
 Route :: get( '/usuarios/{id}', function( $id ) {
     return 'id: ' .$id;
-});
+}) -> where( 'id', '[0-9]+' );
+
 Route :: get( '/usuarios/nuevo', function() {
     return 'Crea usuario nuevo';
 });
