@@ -23,3 +23,6 @@ Route :: get( '/contacto', function() {
 Route :: get( '/usuarios/{id}', function( $id ) {
     return 'id: ' .$id;
 });
+Route :: get( '/usuarios/nuevo', function() {
+    return 'Crea usuario nuevo';
+});
