@@ -23,7 +23,13 @@ Route :: get( '/contacto', function() {
 Route :: get( '/usuario/{id}', function( $id ) {
     return 'id: ' .$id;
 }) -> where( 'id', '[0-9]+' );
-// La misma ruta anterior /usuario/<parametro>, filtro de ruta una cadena 
+
+// Ruta con múltiples peticiones
+Route :: get( 'usuario/{slug}', function ( $slug ) {
+    return "Acción: $slug";
+}) -> where( [ 'slug' => 'create|delete|update' ] );
+
+// La misma ruta anterior /usuario/<parametro>, filtro de ruta una cadena
 Route :: get( '/usuario/{nombre}', function( $nombre ) {
     return "Entonces te llamas {$nombre}";
 }) -> where( 'nombre', '[-\w]+' );
