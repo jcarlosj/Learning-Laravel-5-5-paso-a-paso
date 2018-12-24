@@ -28,6 +28,12 @@ Route :: get( '/usuarios/nuevo', function() {
     return 'Crea usuario nuevo';
 });
 
-Route :: get( '/usuarios/{name}/{nickname}', function( $name, $nickname ) {
-    return "Bienvenido {$name}, tú usuario es: {$nickname} ";
+// Pasando parámetros dinámicos opcionales a una ruta
+Route :: get( '/usuarios/{name}/{nickname?}', function( $name, $nickname = null ) {
+    if( $nickname ) {
+        return "Bienvenido {$name}, tú usuario es: {$nickname} ";
+    }
+    else {
+        return "Bienvenido {$name}";
+    }
 });
