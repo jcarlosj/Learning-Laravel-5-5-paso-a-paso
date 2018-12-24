@@ -19,6 +19,7 @@ Route :: get( '/contacto', function() {
     return 'Contacto';
 });
 
-Route :: get( '/usuarios/detalles', function() {
-    return 'id: ' .$_GET[ 'id' ];
+// Pasando parámetros dinámicos a una ruta
+Route :: get( '/usuarios/{id}', function( $id ) {
+    return 'id: ' .$id;
 });
