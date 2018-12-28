@@ -10,4 +10,9 @@ class UserController extends Controller
     {
         return 'Usuarios';
     }
+
+    public function show( $id )
+    {
+        return 'id: ' .$id;
+    }
 }

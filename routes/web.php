@@ -20,9 +20,8 @@ Route :: get( '/contacto', function() {
 });
 
 // Pasando parámetros dinámicos a una ruta, filtro de ruta entero
-Route :: get( '/usuario/{id}', function( $id ) {
-    return 'id: ' .$id;
-}) -> where( 'id', '[0-9]+' );
+Route :: get( '/usuario/{id}', 'UserController@show' )
+      -> where( 'id', '[0-9]+' );
 
 // Ruta con múltiples peticiones
 Route :: get( 'usuario/{slug}', function ( $slug ) {
