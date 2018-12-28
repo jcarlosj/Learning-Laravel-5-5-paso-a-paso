@@ -15,4 +15,9 @@ class UserController extends Controller
     {
         return 'id: ' .$id;
     }
+
+    public function create()
+    {
+        return 'Crea usuario nuevo';
+    }
 }

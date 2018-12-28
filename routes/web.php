@@ -35,9 +35,7 @@ Route :: get( '/usuario/{nombre}', function( $nombre ) {
 
 Route :: get( '/usuarios', 'UserController@index' );
 
-Route :: get( '/usuarios/nuevo', function() {
-    return 'Crea usuario nuevo';
-});
+Route :: get( '/usuarios/nuevo', 'UserController@create' );
 
 // Pasando parámetros dinámicos opcionales a una ruta
 Route :: get( '/usuarios/{name}/{nickname?}', function( $name, $nickname = null ) {
