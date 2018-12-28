@@ -29,9 +29,8 @@ Route :: get( 'usuario/{slug}', function ( $slug ) {
 }) -> where( [ 'slug' => 'create|delete|update' ] );
 
 // La misma ruta anterior /usuario/<parametro>, filtro de ruta una cadena
-Route :: get( '/usuario/{nombre}', function( $nombre ) {
-    return "Entonces te llamas {$nombre}";
-}) -> where( 'nombre', '[-\w]+' );
+Route :: get( '/usuario/{nombre}', 'WelcomeController@thenName' )
+      -> where( 'nombre', '[-\w]+' );
 
 Route :: get( '/usuarios', 'UserController@index' );
 
