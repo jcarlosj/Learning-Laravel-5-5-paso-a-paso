@@ -22,4 +22,10 @@ class WelcomeUsersTest extends TestCase
               -> assertStatus( 200 )                # Comprueba el estado de la petición
               -> assertSee( 'Bienvenido Juan' );    # Comprueba que el código fuente de la página generada se puede ser ese texto
     }
+    public function it_welcome_users_with_nickname_and_id()
+    {
+        $this -> get( '/usuarios/1/jcarlosj' )      # Simula petición a la URL /usuarios/juan
+              -> assertStatus( 200 )                # Comprueba el estado de la petición
+              -> assertSee( 'Bienvenido jcarlosj, tú id es: 1' );    # Comprueba que el código fuente de la página generada se puede ser ese texto
+    }
 }
