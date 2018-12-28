@@ -13,13 +13,13 @@ class WelcomeUsersTest extends TestCase
     {
         $this -> get( '/usuarios/juan/jcarlosj' )                            # Simula petición a la URL /usuarios/juan/jcarlosj
               -> assertStatus( 200 )                                         # Comprueba el estado de la petición
-              -> assertSee( 'Bienvenido juan, tú usuario es: jcarlosj' );    # Comprueba que el código fuente de la página generada se puede ser ese texto
+              -> assertSee( 'Bienvenido Juan, tú usuario es: jcarlosj' );    # Comprueba que el código fuente de la página generada se puede ser ese texto
     }
     /** @test */
     public function it_welcome_users_without_nickname()
     {
         $this -> get( '/usuarios/juan' )            # Simula petición a la URL /usuarios/juan
               -> assertStatus( 200 )                # Comprueba el estado de la petición
-              -> assertSee( 'Bienvenido juan' );    # Comprueba que el código fuente de la página generada se puede ser ese texto
+              -> assertSee( 'Bienvenido Juan' );    # Comprueba que el código fuente de la página generada se puede ser ese texto
     }
 }
