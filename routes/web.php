@@ -38,16 +38,7 @@ Route :: get( '/usuarios', 'UserController@index' );
 Route :: get( '/usuarios/nuevo', 'UserController@create' );
 
 // Pasando parámetros dinámicos opcionales a una ruta
-Route :: get( '/usuarios/{name}/{nickname?}', function( $name, $nickname = null ) {
-    $name = ucfirst( $name );
-
-    if( $nickname ) {
-        return "Bienvenido {$name}, tú usuario es: {$nickname} ";
-    }
-    else {
-        return "Bienvenido {$name}";
-    }
-});
+Route :: get( '/usuarios/{name}/{nickname?}', 'WelcomeUserController@index' );
 
 // Filtros de ruta para 1 o más parámetros
 Route :: get( '/usuario/{idu}/{apodo}', function( $idu, $apodo ) {
