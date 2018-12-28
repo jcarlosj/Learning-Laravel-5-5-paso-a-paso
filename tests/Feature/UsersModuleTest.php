@@ -9,11 +9,10 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class UsersModuleTest extends TestCase
 {
     /**
-     * A basic test example.
-     *
-     * @return void
+     * Prueba: carga la página de lista de usuarios
+     * @test
      */
-    public function testExample()
+    function it_loads_the_users_list_page()
     {
         $this -> get( '/usuarios' )          # Simula petición a la URL /usuarios
               -> assertStatus( 200 )         # Comprueba el estado de la petición
