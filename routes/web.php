@@ -34,9 +34,7 @@ Route :: get( '/usuario/{nombre}', function( $nombre ) {
     return "Entonces te llamas {$nombre}";
 }) -> where( 'nombre', '[-\w]+' );
 
-Route :: get( '/usuarios', function() {
-    return 'Usuarios';
-});
+Route :: get( '/usuarios', 'UserController@index' );
 
 Route :: get( '/usuarios/nuevo', function() {
     return 'Crea usuario nuevo';
