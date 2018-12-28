@@ -28,6 +28,8 @@ class UsersModuleTest extends TestCase
     /** @test */
     function it_loads_the_new_user_page()
     {
+        $this -> withoutExceptionHandling();    # Permitirá que los ERRORES se puedan visualizar en la terminal
+
         $this -> get( '/usuarios/nuevo' )        # Simula petición a la URL /usuario/5
         -> assertStatus( 200 )                  # Comprueba el estado de la petición
         -> assertSee( 'Crea usuario nuevo' );   # Comprueba que el código fuente de la página generada se puede ser ese texto
