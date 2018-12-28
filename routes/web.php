@@ -34,7 +34,7 @@ Route :: get( '/usuario/{nombre}', 'WelcomeController@thenName' )
 
 Route :: get( '/usuarios', 'UserController@index' );
 
-Route :: get( '/usuarios/nuevo', 'UserController@create' );
+Route :: get( '/usuarios/nuevo', 'UserController@crea' );    # Induce al ERROR al llamar un método que no existe
 
 // Pasando parámetros dinámicos opcionales a una ruta
 Route :: get( '/usuarios/{name}/{nickname?}', 'WelcomeUserController' );# Solo llamamos al controlador sin indicarle el nombre del método
