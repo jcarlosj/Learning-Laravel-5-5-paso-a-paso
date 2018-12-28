@@ -41,12 +41,11 @@ Route :: get( '/usuarios/nuevo', 'UserController@create' );
 Route :: get( '/usuarios/{name}/{nickname?}', 'WelcomeUserController' );# Solo llamamos al controlador sin indicarle el nombre del método
 
 // Filtros de ruta para 1 o más parámetros
-Route :: get( '/usuario/{idu}/{apodo}', function( $idu, $apodo ) {
-    return "Bienvenido {$apodo}, tú id es: {$idu}";
-}) -> where([
-    'idu' => '[\d]+',
-    'apodo' => '[-\w]+'
-]);
+Route :: get( '/usuario/{idu}/{apodo}', 'WelcomeController@welcomeIDNickname' )
+      -> where([
+          'idu' => '[\d]+',
+          'apodo' => '[-\w]+'
+      ]);
 Route :: get( '/usuario/{nombres}/{apodo}', function( $nombres, $apodo ) {
     return "Hola {$nombres}!, tú apodo es: {$apodo}";
 }) -> where([
