@@ -44,6 +44,8 @@ Route :: get( '/usuarios/nuevo', function() {
 
 // Pasando parámetros dinámicos opcionales a una ruta
 Route :: get( '/usuarios/{name}/{nickname?}', function( $name, $nickname = null ) {
+    $name = ucfirst( $name );
+
     if( $nickname ) {
         return "Bienvenido {$name}, tú usuario es: {$nickname} ";
     }
