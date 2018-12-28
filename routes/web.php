@@ -46,9 +46,8 @@ Route :: get( '/usuario/{idu}/{apodo}', 'WelcomeController@welcomeIDNickname' )
           'idu' => '[\d]+',
           'apodo' => '[-\w]+'
       ]);
-Route :: get( '/usuario/{nombres}/{apodo}', function( $nombres, $apodo ) {
-    return "Hola {$nombres}!, tú apodo es: {$apodo}";
-}) -> where([
-    'nombres' => '[-\w]+',
-    'apodo' => '[-\w]+'
-]);;
+Route :: get( '/usuario/{nombres}/{apodo}', 'WelcomeController@welcomeNameNickname' )
+      -> where([
+         'nombres' => '[-\w]+',
+         'apodo' => '[-\w]+'
+      ]);;

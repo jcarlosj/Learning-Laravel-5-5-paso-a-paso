@@ -11,4 +11,7 @@ class WelcomeController extends Controller
     public function welcomeIDNickname( $idu, $apodo ) {
         return "Bienvenido {$apodo}, tú id es: {$idu}";
     }
+    public function welcomeNameNickname( $nombres, $apodo ) {
+        return "Hola {$nombres}!, tú apodo es: {$apodo}";
+    }
 }
