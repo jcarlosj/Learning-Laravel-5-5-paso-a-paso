@@ -10,10 +10,11 @@ class UserController extends Controller
     {
         # Datos estáticos
         $users = [ 'Elisa', 'Ana', 'Melisa', 'Luisa', '<script>alert( "Juliana" )</script>' ];    # Array
+        $title = 'Usuarios';
 
-        return view( 'users' )
-               -> with( 'title', 'Usuarios' )    # Encadena varias veces el método with() al Helper view() para
-               -> with( 'users', $users );       # pasar los datos a la vista de forma individual
+        dd( compact( 'title', 'users' ) );                    # Helper de Laravel similar a ejecutar var_dump(); die(); en PHP
+
+        return view( 'users', compact( 'title', 'users' ) );  # Pasa datos a la vista que son variables locales usando sus nombres para convertirlas en un array asociativo
     }
 
     public function show( $id )
