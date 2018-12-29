@@ -8,5 +8,10 @@
     </head>
     <body>
         <h2>Usuarios</h2>
+        <ul>
+            <?php foreach ( $users as $key => $user ): ?>
+                <li><?php echo $user; ?></li>
+            <?php endforeach; ?>
+        </ul>
     </body>
 </html>

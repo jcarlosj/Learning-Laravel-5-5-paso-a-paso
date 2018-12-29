@@ -16,7 +16,9 @@ class UsersModuleTest extends TestCase
     {
         $this -> get( '/usuarios' )          # Simula petición a la URL /usuarios
               -> assertStatus( 200 )         # Comprueba el estado de la petición
-              -> assertSee( 'Usuarios' );    # Comprueba que el código fuente de la página generada se puede ser ese texto
+              -> assertSee( 'Usuarios' )     # Comprueba que el código fuente de la página generada se puede ser ese texto
+              -> assertSee( 'Elisa' )
+              -> assertSee( 'Juliana' );
     }
     /** @test */
     function it_loads_the_users_details_page()

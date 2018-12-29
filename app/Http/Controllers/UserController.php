@@ -8,7 +8,12 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view( 'users' );    # Helper 'view' es relativo al directorio /views y luego el nombre del archivo de vista sin extensión
+        # Datos estáticos
+        $users = [ 'Elisa', 'Ana', 'Melisa', 'Luisa', 'Juliana' ];    # Array
+
+        return view( 'users' , [    # Helper 'view' es relativo al directorio /views y luego el nombre del archivo de vista sin extensión
+            'users' => $users       # Pasando datos para que estén disponibles en la vista 
+        ]);
     }
 
     public function show( $id )
