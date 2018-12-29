@@ -11,12 +11,10 @@ class UserController extends Controller
         # Datos estáticos
         $users = [ 'Elisa', 'Ana', 'Melisa', 'Luisa', '<script>alert( "Juliana" )</script>' ];    # Array
 
-        return view( 'users' ) -> with([    # Encadena el método with() al Helper view() para pasar los datos a la vista usando la estructura de un Array Asociativo
-           'title' => 'Usuarios',
-           'users' => $users
-        ]);
+        return view( 'users' )
+               -> with( 'title', 'Usuarios' )    # Encadena varias veces el método with() al Helper view() para
+               -> with( 'users', $users );       # pasar los datos a la vista de forma individual
     }
-
 
     public function show( $id )
     {
