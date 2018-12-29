@@ -7,7 +7,7 @@
         <title>Listado de usuarios</title>
     </head>
     <body>
-        <h2>Usuarios</h2>
+        <h2><?php echo e( $title ); ?></h2>
         <ul>
             <?php foreach ( $users as $key => $user ): ?>
                 <li><?php echo e( $user ); ?></li>
