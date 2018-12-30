@@ -9,16 +9,26 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class UsersModuleTest extends TestCase
 {
     /**
-     * Prueba: carga la página de lista de usuarios
+     * Prueba: Muestra la lista de usuarios
      * @test
      */
-    function it_loads_the_users_list_page()
+    function it_shows_the_users_list()
     {
         $this -> get( '/usuarios' )          # Simula petición a la URL /usuarios
               -> assertStatus( 200 )         # Comprueba el estado de la petición
               -> assertSee( 'Usuarios' )     # Comprueba que el código fuente de la página generada se puede ser ese texto
               -> assertSee( 'Elisa' )
               -> assertSee( 'Juliana' );
+    }
+    /**
+     * Prueba: Muestra mensaje por defecto si la lista de usuarios está vacía
+     * @test
+     */
+    function it_shows_a_default_message_if_the_users_list_is_empty()
+    {
+        $this -> get( '/usuarios?empty' )                        # Simula petición a la URL /usuarios
+              -> assertStatus( 200 )                             # Comprueba el estado de la petición
+              -> assertSee( 'No hay usuarios registrados' );     # Comprueba que el código fuente de la página generada se puede ser ese texto
     }
     /** @test */
     function it_loads_the_users_details_page()
