@@ -9,9 +9,9 @@
     <body>
         <h2>{{ e( $title ) }}</h2>
         <ul>
-            <?php foreach ( $users as $key => $user ): ?>
+            @foreach ( $users as $key => $user )
                 <li>{{ e( $user ) }}</li>
-            <?php endforeach; ?>
+            @endforeach
         </ul>
     </body>
 </html>
