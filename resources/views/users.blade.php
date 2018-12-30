@@ -8,7 +8,7 @@
     </head>
     <body>
         <h2>{{ $title }}</h2>
-        @if( ! empty( $users ) )
+        @unless( empty( $users ) )
             <ul>
                 @foreach ( $users as $key => $user )
                     <li>{{ $user }}</li>
