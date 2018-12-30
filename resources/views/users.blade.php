@@ -7,10 +7,10 @@
         <title>Listado de usuarios</title>
     </head>
     <body>
-        <h2>{{ e( $title ) }}</h2>
+        <h2>{{ $title }}</h2>
         <ul>
             @foreach ( $users as $key => $user )
-                <li>{{ e( $user ) }}</li>
+                <li>{{ $user }}</li>
             @endforeach
         </ul>
     </body>
