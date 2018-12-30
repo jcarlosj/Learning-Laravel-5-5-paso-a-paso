@@ -8,14 +8,12 @@
     </head>
     <body>
         <h2>{{ $title }}</h2>
-        @empty( $users )
-            <p>No hay usuarios registrados</p>
-        @else
-            <ul>
-                @foreach ( $users as $key => $user )
-                    <li>{{ $user }}</li>
-                @endforeach
-            </ul>
-        @endempty
+        <ul>
+            @forelse ( $users as $key => $user )
+                <li>{{ $user }}</li>
+            @empty
+                <li>No hay usuarios registrados</li>
+            @endforelse
+        </ul>
     </body>
 </html>
