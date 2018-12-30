@@ -8,8 +8,16 @@ class UserController extends Controller
 {
     public function index()
     {
-        # Datos estáticos
-        $users = [ 'Elisa', 'Ana', 'Melisa', 'Luisa', '<script>alert( "Juliana" )</script>' ];    # Array
+        # Valida si el campo 'empty' a sido pasado por la URL y Simula la existencia de datos
+        if( request() -> has( 'empty' ) ) {
+            # Si URL es: http://127.0.0.1:8000/usuarios?empty
+            $users = [];
+        }
+        else {
+            # Si URL es: http://127.0.0.1:8000/usuarios
+            $users = [ 'Elisa', 'Ana', 'Melisa', 'Luisa', '<script>alert( "Juliana" )</script>' ];    # Array Datos estáticos
+        }
+
         $title = 'Usuarios';
 
         #dd( compact( 'title', 'users' ) );                    # Helper de Laravel similar a ejecutar var_dump(); die(); en PHP
