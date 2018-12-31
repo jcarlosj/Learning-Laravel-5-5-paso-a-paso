@@ -17,4 +17,7 @@ class WelcomeController extends Controller
     public function thenName( $nombre ) {
         return "Entonces te llamas {$nombre}";
     }
+    public function contacto() {
+        return view( 'contacto' );
+    }
 }

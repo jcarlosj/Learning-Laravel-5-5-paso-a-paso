@@ -15,9 +15,7 @@ Route::get('/', function () {
     return 'Home';
 });
 
-Route :: get( '/contacto', function() {
-    return 'Contacto';
-});
+Route :: get( '/contacto', 'WelcomeController@contacto' );
 
 // Pasando parámetros dinámicos a una ruta, filtro de ruta entero
 Route :: get( '/usuario/{id}', 'UserController@show' )
