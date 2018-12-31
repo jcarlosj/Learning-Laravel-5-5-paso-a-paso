@@ -1,5 +1,6 @@
 @extends( 'layout' )         {{-- Extiende al archivo layout.blade.php Template del sitio --}}
 
+@section( 'title', "Listado de $title " )        {{-- Define la sección 'title' (forma abreviada) --}}
 @section( 'content' )        {{-- Define la sección 'content' --}}
 
 <h2>{{ $title }}</h2>
