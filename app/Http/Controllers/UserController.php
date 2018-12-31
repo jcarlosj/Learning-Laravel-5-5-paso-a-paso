@@ -22,12 +22,14 @@ class UserController extends Controller
 
         #dd( compact( 'title', 'users' ) );                    # Helper de Laravel similar a ejecutar var_dump(); die(); en PHP
 
-        return view( 'users', compact( 'title', 'users' ) );  # Pasa datos a la vista que son variables locales usando sus nombres para convertirlas en un array asociativo
+        # (Sin espacios) pues users hace referencia al directorio y el archivo así: /users/index.blade.php
+        return view( 'users.index', compact( 'title', 'users' ) );  # Pasa datos a la vista que son variables locales usando sus nombres para convertirlas en un array asociativo
     }
 
     public function show( $id )
     {
-        return view( 'users-show', compact( 'id' ) );
+        # (Sin espacios) pues users hace referencia al directorio y el archivo así: /users/show.blade.php
+        return view( 'users.show', compact( 'id' ) );
     }
 
     public function create()
