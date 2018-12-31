@@ -58,7 +58,28 @@
 <!-- Begin page content -->
 <main role="main" class="flex-shrink-0">
     <div class="container">
-        @yield( 'content' )    {{-- Despliega el contenido de la sección 'content' --}}
+
+        <div class="row mt-3">
+            <div class="col-8">
+                @yield( 'content' )    {{-- Despliega el contenido de la sección 'content' --}}
+            </div>
+            <div class="col-4">
+                @section( 'sidebar' )  {{-- Define la sección 'sidebar' --}}
+                    <h2>Buscar</h2>
+                    <input type="text" />
+                    <button type="button">Buscar</button>
+
+                    <h2>Últimas publicaciones</h2>
+                    <ul>
+                        <li><a href="">publicación 1</a></li>
+                        <li><a href="">publicación 2</a></li>
+                        <li><a href="">publicación 3</a></li>
+                        <li><a href="">publicación 4</a></li>
+                    </ul>
+                @show                 {{-- Funciona como cierre de @section e indica que desea mostrar la sección definida --}}
+            </div>
+        </div>
+
     </div>
 </main>
 
