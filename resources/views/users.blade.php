@@ -12,3 +12,10 @@
 </ul>
 
 @endsection
+
+@section( 'sidebar' )        {{-- En este caso reescribe la definición de la sección 'sidebar' para esta vista --}}
+    <h2>Detalles de la subscripción</h2>
+    <p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <input type="text" placeholder="ej: tu@correo.co" />
+    <button type="button">Subscribirse</button>
+@endsection
