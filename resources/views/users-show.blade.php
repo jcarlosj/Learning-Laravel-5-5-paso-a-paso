@@ -1,4 +1,6 @@
-@include( 'header' )
+@extends( 'layout' )         {{-- Extiende al archivo layout.blade.php Template del sitio --}}
+
+@section( 'content' )        {{-- Define la sección 'content' --}}
 
 <div class="row mt-3">
     <div class="col-8">
@@ -10,4 +12,4 @@
     </div>
 </div>
 
-@include( 'footer' )
+@endsection
