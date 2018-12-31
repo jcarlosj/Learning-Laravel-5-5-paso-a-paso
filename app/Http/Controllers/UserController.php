@@ -27,7 +27,7 @@ class UserController extends Controller
 
     public function show( $id )
     {
-        return 'id: ' .$id;
+        return view( 'users-show', compact( 'id' ) );
     }
 
     public function create()
