@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table -> string( 'profession', 100 ) -> nullable();    # Nuevo columna/campo con 100 caracteres opcional llenarlo
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
