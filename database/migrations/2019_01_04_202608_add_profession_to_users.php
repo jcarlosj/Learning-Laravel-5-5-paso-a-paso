@@ -15,7 +15,7 @@ class AddProfessionToUsers extends Migration
     {
         # Agrega el campo 'profession' a la tabla 'users'
         Schema :: table ( 'users', function( Blueprint $table ) {
-            $table -> string( 'profession', 50 ) -> nullable();
+            $table -> string( 'profession', 50 ) -> nullable() -> after( 'password' );
         });
     }
 
