@@ -11,8 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        /* Ejecuta Vaciado o Truncado de tablas */
-        $this -> truncateAllTables();
+        /* Ejecuta Vaciado o Truncado de tablas, pasando un Array con sus nombres */
+        $this -> truncateAllTables([
+            'professions'
+        ]);
         // $this->call(UsersTableSeeder::class);
         #dd( ProfessionSeeder :: class );               /* Retorna el nombre del Seeder, en este caso: 'ProfessionSeeder' */
 
@@ -20,10 +22,11 @@ class DatabaseSeeder extends Seeder
         $this -> call( ProfessionSeeder :: class );
     }
 
-    private function truncateAllTables() {
+    private function truncateAllTables( array $tables ) {
         DB :: statement( 'SET FOREIGN_KEY_CHECKS = 0;' );  /* Sentencia SQL para DESHABILITAR revisión de llaves foráneas */
-        DB :: table( 'users' ) -> truncate();              /* Trunca o vacia la tabla 'professions' antes de hacer inserciones */
-        DB :: table( 'professions' ) -> truncate();        /* Trunca o vacia la tabla 'professions' antes de hacer inserciones */
+        foreach ( $tables as $key => $table ) {
+            DB :: table( $table ) -> truncate();           /* Trunca o vacia la tabla indicada */
+        }
         DB :: statement( 'SET FOREIGN_KEY_CHECKS = 1;' );  /* Sentencia SQL para HABILITAR revisión de llaves foráneas */
     }
 }
