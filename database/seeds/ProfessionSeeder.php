@@ -16,7 +16,7 @@ class ProfessionSeeder extends Seeder
             'title' => 'BackEnd Developer'
         ]);
         DB :: table( 'professions' ) -> insert([
-            'title' => 'BackEnd Developer'
+            'title' => 'FrontEnd Developer'
         ]);
         DB :: table( 'professions' ) -> insert([
             'title' => 'Web Designer'
