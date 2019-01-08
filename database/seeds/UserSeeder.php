@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         /* Obtener el id del campo con title "BackEnd Developer" usando el método select() */
-        $professions = DB :: select( 'SELECT id FROM professions WHERE title = "BackEnd Developer"' );
+        $professions = DB :: select( 'SELECT id FROM professions WHERE title = ?', [ 'BackEnd Developer' ] );
         #dd( $professions );
 
         /* Realiza inserciones a nuestra tabla 'users' */
