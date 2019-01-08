@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
         #dd( ProfessionSeeder :: class );               /* Retorna el nombre del Seeder, en este caso: 'ProfessionSeeder' */
 
         /* Registro de Seeders */
-        $this -> call( UserSeeder :: class );
         $this -> call( ProfessionSeeder :: class );
+        $this -> call( UserSeeder :: class );            # Recomendación Tablas que poseen dependencia por uso de llaves foráneas registrarlas bajo las tablas de las que dependen
     }
 
     private function truncateAllTables( array $tables ) {
