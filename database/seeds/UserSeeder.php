@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         /* Ejemplos usando el Constructor de consultas de Laravel usando el método where() */
         $profession = DB :: table( 'professions' ) -> select( 'id' )      # Obtiene un objeto con un solo Array obteniendo de este sus valores
                          -> where(
-                             'title', '=', 'BackEnd Developer'            # Argumentos: primero nombre del campo, segundo operador de comparacion, tercero valor a comparar
+                             'title', 'BackEnd Developer'            # Argumentos: primero nombre del campo, segundo valor a comparar
                          ) -> first();
 
         dd( $profession );
