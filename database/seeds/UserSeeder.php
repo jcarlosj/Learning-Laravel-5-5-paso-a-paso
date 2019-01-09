@@ -16,9 +16,9 @@ class UserSeeder extends Seeder
         #$profession = DB :: select( 'SELECT id FROM professions WHERE title = ?', [ 'BackEnd Developer' ] );                # Obtiene el ID del campo donde title es "BackEnd Developer"
 
         /* Ejemplos usando el Constructor de consultas de Laravel usando el método where() */
-        $profession = DB :: table( 'professions' )                   # Obtiene un objeto con un solo Array obteniendo de este sus valores
+        $profession = DB :: table( 'professions' )                        # Obtiene un objeto con un solo Array obteniendo de este sus valores
                          -> where(
-                             'title', 'BackEnd Developer'            # Argumentos: primero nombre del campo, segundo valor a comparar
+                             [ 'title' => 'BackEnd Developer' ]           # Argumentos: Usando un Array Asosiativo
                          ) -> first();
 
         dd( $profession );
