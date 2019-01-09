@@ -12,9 +12,15 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        /* Obtener el id del campo con title "BackEnd Developer" usando el método select() */
-        $professions = DB :: select( 'SELECT id FROM professions WHERE title = ?', [ 'BackEnd Developer' ] );
-        #dd( $professions );
+        /* Ejemplos de consultas SQL usando el método select() del Facade DB de Lavavel */
+        $professions_1 = DB :: select( 'SELECT id FROM professions WHERE title = ?', [ 'BackEnd Developer' ] );                # Obtiene el ID del campo donde title es "BackEnd Developer"
+        $professions_2 = DB :: select( 'SELECT id FROM professions WHERE title = ? LIMIT 0,1', [ 'BackEnd Developer' ] );      # Obtiene un ID o ninguno si el campo title es "BackEnd Developer"
+        $professions_3 = DB :: select( 'SELECT id FROM professions LIMIT 0,1' );                                               # Obtiene el primer ID registrado en la tabla, siempre que existan registros en ella
+        dd(
+            'Consulta 1: SELECT id FROM professions WHERE title = ?', $professions_1,
+            'Consulta 2: SELECT id FROM professions WHERE title = ? LIMIT 0,1', $professions_2,
+            'Consulta 3: SELECT id FROM professions LIMIT 0,1', $professions_3
+        );
 
         /* Realiza inserciones a nuestra tabla 'users' */
         DB :: table( 'users' ) -> insert([

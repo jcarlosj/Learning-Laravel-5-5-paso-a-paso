@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         /* Ejecuta Vaciado o Truncado de tablas, pasando un Array con sus nombres */
         $this -> truncateAllTables([
-            'users',
+            #'users',
             'professions'
         ]);
         // $this->call(UsersTableSeeder::class);
