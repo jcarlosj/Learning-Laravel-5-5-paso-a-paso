@@ -16,7 +16,7 @@ class CreateProfessionsTable extends Migration
         Schema::create('tb_profesiones', function (Blueprint $table) {
             $table->increments('id');
             $table -> string( 'title', 100 ) -> unique();        # Agrega campo/columna 'title' con longitud de 100 caracteres
-            $table->timestamps();
+            # $table->timestamps();
         });
     }
 
