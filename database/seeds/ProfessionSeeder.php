@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use \Illuminate\Support\Facades\DB;
+use App\Profession;
 
 class ProfessionSeeder extends Seeder
 {
@@ -32,6 +33,14 @@ class ProfessionSeeder extends Seeder
         ]);
         DB :: table( 'professions' ) -> insert([
             'title' => 'Web Designer'
+        ]);
+
+        /* Realiza inserciones usando el ORM Eloquent de Laravel */
+        Profession :: create([
+            'title' => 'Software Architect'
+        ]);
+        Profession :: create([
+            'title' => 'Project Manager'
         ]);
     }
 }
