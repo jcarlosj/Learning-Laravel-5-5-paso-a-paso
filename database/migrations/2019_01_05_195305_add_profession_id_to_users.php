@@ -15,7 +15,7 @@ class AddProfessionIdToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table -> unsignedInteger( 'profession_id' ) -> nullable();    /* (OPCIONAL) Agrega el campo/columna llamada 'professional_id' de tipo entero sin signo */
-            $table -> foreign( 'profession_id' ) -> references( 'id' ) -> on( 'professions' ); /* Agrega la llave foránea al campo 'professional_id' de esta tabla, relacionandola con al campo 'id' de la tabla 'professions' */
+            $table -> foreign( 'profession_id' ) -> references( 'id' ) -> on( 'tb_profesiones' ); /* Agrega la llave foránea al campo 'professional_id' de esta tabla, relacionandola con al campo 'id' de la tabla 'professions' */
         });
     }
 
