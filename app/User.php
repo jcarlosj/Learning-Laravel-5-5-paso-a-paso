@@ -30,4 +30,8 @@ class User extends Authenticatable
     public function isAdmin() {
         return $this -> email === 'jcjimenez29@misena.edu.co';
     }
+
+    public static function findByEmail( $email ) {
+        return static :: where( compact( 'email' ) ) -> first();   # Escribir static equivale a escribir User
+    }
 }
