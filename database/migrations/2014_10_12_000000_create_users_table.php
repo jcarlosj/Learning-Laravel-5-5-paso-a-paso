@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table -> boolean( 'is_admin' ) -> default( false );        # Crea en realidad un campo de tipo tinyint() con valor por defecto de 0 CERO en la base de datos
             $table->rememberToken();
             $table->timestamps();
         });
