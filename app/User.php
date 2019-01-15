@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Profession;
 
 class User extends Authenticatable
 {
@@ -37,12 +38,16 @@ class User extends Authenticatable
         'is_admin'
     ];
 
-
     public function isAdmin() {
         return $this -> email === 'jcjimenez29@misena.edu.co';
     }
 
     public static function findByEmail( $email ) {
         return static :: where( compact( 'email' ) ) -> first();   # Escribir static equivale a escribir User
+    }
+
+    # Define relación entre este entidad/objeto/tabla con otro
+    public function profession() {                           # Eloquent buscará un campo con el nombre de este método más el postfijo _id para hacer dicha busqueda ( profession_id )
+        return $this -> belongsTo( Profession :: class );    # User "pertenece a" Profession (devolviendo un objeto de la clase Profession)
     }
 }
