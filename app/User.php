@@ -32,6 +32,12 @@ class User extends Authenticatable
         'is_admin' => 'boolean'
     ];
 
+    # Agrega propiedad $guarded para evitar que campo/columna 'is_admin' pueda ser cargado de forma masiva
+    protected $guarded = [
+        'is_admin'
+    ];
+
+
     public function isAdmin() {
         return $this -> email === 'jcjimenez29@misena.edu.co';
     }
