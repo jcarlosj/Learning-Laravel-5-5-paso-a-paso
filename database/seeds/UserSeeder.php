@@ -18,7 +18,20 @@ class UserSeeder extends Seeder
             'name' => 'Juan Carlos Jiménez Gutiérrez',
             'email' => 'jcjimenez29@misena.edu.co',
             'password' => bcrypt( 'laravel' ),            # bcrypt(): Helper de Laravel para encriptar contraseñas
+            'profession_id' => Profession :: whereTitle( 'BackEnd Developer' ) -> value( 'id' ),   # Insertamos un ID existente en la tabla 'professions'
+            'is_admin' => true
+        ]);
+        User :: create([
+            'name' => 'Elisa Maria Giraldo',
+            'email' => 'elisa@correo.co',
+            'password' => bcrypt( 'laravel' ),            # bcrypt(): Helper de Laravel para encriptar contraseñas
             'profession_id' => Profession :: whereTitle( 'BackEnd Developer' ) -> value( 'id' )   # Insertamos un ID existente en la tabla 'professions'
+        ]);
+        User :: create([
+            'name' => 'Maria Luisa Bazalar',
+            'email' => 'mlubazalar@correo.co',
+            'password' => bcrypt( 'laravel' ),            # bcrypt(): Helper de Laravel para encriptar contraseñas
+            'profession_id' => null
         ]);
     }
 }

@@ -39,7 +39,7 @@ class User extends Authenticatable
     ];
 
     public function isAdmin() {
-        return $this -> email === 'jcjimenez29@misena.edu.co';
+        return $this -> is_admin;
     }
 
     public static function findByEmail( $email ) {
