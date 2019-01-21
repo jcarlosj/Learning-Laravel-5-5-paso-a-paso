@@ -42,5 +42,8 @@ class ProfessionSeeder extends Seeder
         Profession :: create([
             'title' => 'Project Manager'
         ]);
+
+        /* Realiza 10, inserciones usando usando Model Factories usando el Helper factory() de Laravel */
+        factory( Profession :: class, 10 ) -> create();
     }
 }
