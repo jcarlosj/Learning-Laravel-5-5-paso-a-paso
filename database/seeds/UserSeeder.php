@@ -13,25 +13,18 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        /* Realiza inserciones a nuestra tabla 'users' con el id de la profesión */
-        User :: create([
+        /* Realiza inserciones a nuestra tabla 'users' usando Model Factories usando el Helper factory() de Laravel */
+        factory( User :: class ) -> create([
             'name' => 'Juan Carlos Jiménez Gutiérrez',
             'email' => 'jcjimenez29@misena.edu.co',
             'password' => bcrypt( 'laravel' ),            # bcrypt(): Helper de Laravel para encriptar contraseñas
             'profession_id' => Profession :: whereTitle( 'BackEnd Developer' ) -> value( 'id' ),   # Insertamos un ID existente en la tabla 'professions'
             'is_admin' => true
         ]);
-        User :: create([
-            'name' => 'Elisa Maria Giraldo',
-            'email' => 'elisa@correo.co',
-            'password' => bcrypt( 'laravel' ),            # bcrypt(): Helper de Laravel para encriptar contraseñas
-            'profession_id' => Profession :: whereTitle( 'BackEnd Developer' ) -> value( 'id' )   # Insertamos un ID existente en la tabla 'professions'
+        factory( User :: class ) -> create([
+            'profession_id' => Profession :: whereTitle( 'FrontEnd Developer' ) -> value( 'id' )   # Insertamos un ID existente en la tabla 'professions'
         ]);
-        User :: create([
-            'name' => 'Maria Luisa Bazalar',
-            'email' => 'mlubazalar@correo.co',
-            'password' => bcrypt( 'laravel' ),            # bcrypt(): Helper de Laravel para encriptar contraseñas
-            'profession_id' => null
-        ]);
+        factory( User :: class ) -> create();
+
     }
 }
