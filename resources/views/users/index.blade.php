@@ -6,7 +6,7 @@
 <h2>{{ $title }}</h2>
 <ul>
     @forelse ( $users as $key => $user )
-        <li>{{ $user }}</li>
+        <li>{{ $user -> name }}, <small>{{ $user -> email }}</small></li>
     @empty
         <li>No hay usuarios registrados</li>
     @endforelse
