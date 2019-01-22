@@ -14,12 +14,14 @@ class UserSeeder extends Seeder
     public function run()
     {
         /* Realiza inserciones a nuestra tabla 'users' usando Model Factories usando el Helper factory() de Laravel */
-        factory( User :: class, 2 ) -> create([
+        factory( User :: class, 1 ) -> create([
+            'name' => 'Juan Carlos Jiménez Gutiérrez',
+            'email' => 'jcjimenez29@misena.edu.co',
             'password' => bcrypt( 'laravel' ),            # bcrypt(): Helper de Laravel para encriptar contraseñas
             'profession_id' => Profession :: whereTitle( 'BackEnd Developer' ) -> value( 'id' ),   # Insertamos un ID existente en la tabla 'professions'
             'is_admin' => true
         ]);
-        factory( User :: class ) -> times( 4 ) -> create([
+        factory( User :: class ) -> times( 5 ) -> create([
             'profession_id' => Profession :: whereTitle( 'FrontEnd Developer' ) -> value( 'id' )   # Insertamos un ID existente en la tabla 'professions'
         ]);
         factory( User :: class, 3 ) -> create();
