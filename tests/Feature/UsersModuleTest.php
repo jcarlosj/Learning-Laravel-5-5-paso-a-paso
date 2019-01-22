@@ -10,6 +10,7 @@ use App\User;
 
 class UsersModuleTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * Prueba: Muestra la lista de usuarios
      * @test
@@ -18,10 +19,12 @@ class UsersModuleTest extends TestCase
     {
         /* Registro los usuarios esperados usando Model Factories */
         factory( User :: class ) -> create([
-            'name' => 'Elisa'
+            'name' => 'Elisa',
+            'website' => 'www.matiz.co'
         ]);
         factory( User :: class ) -> create([
-            'name' => 'Juliana'
+            'name' => 'Juliana',
+            'website' => 'www.juliana.me'
         ]);
 
         $this -> get( '/usuarios' )          # Simula petición a la URL /usuarios
@@ -36,9 +39,6 @@ class UsersModuleTest extends TestCase
      */
     function it_shows_a_default_message_if_the_users_list_is_empty()
     {
-        DB :: table( 'users' ) -> truncate();
-        #User :: truncate();
-
         $this -> get( '/usuarios' )                        # Simula petición a la URL /usuarios
               -> assertStatus( 200 )                             # Comprueba el estado de la petición
               -> assertSee( 'No hay usuarios registrados' );     # Comprueba que el código fuente de la página generada se puede ser ese texto
