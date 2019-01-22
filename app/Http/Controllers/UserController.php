@@ -3,23 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
     public function index()
     {
-        # Valida si el campo 'empty' a sido pasado por la URL y Simula la existencia de datos
-        if( request() -> has( 'empty' ) ) {
-            # Si URL es: http://127.0.0.1:8000/usuarios?empty
-            $users = [];
-        }
-        else {
-            # Si URL es: http://127.0.0.1:8000/usuarios
-            $users = [ 'Elisa', 'Ana', 'Melisa', 'Luisa', '<script>alert( "Juliana" )</script>' ];    # Array Datos estáticos
-        }
+        # Obtenemos los usuarios registrados (En este caso usando el constructor de consultas de Laravel)
+        $users = DB :: table( 'users' ) -> get();
+        #dd( 'usuarios registrados ', $users );
 
         $title = 'Usuarios';
-
         #dd( compact( 'title', 'users' ) );                    # Helper de Laravel similar a ejecutar var_dump(); die(); en PHP
 
         # (Sin espacios) pues users hace referencia al directorio y el archivo así: /users/index.blade.php
