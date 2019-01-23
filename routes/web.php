@@ -10,17 +10,23 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/* PATH: / */
 Route::get('/', function () {
     return 'Home';
 });
 
-Route :: get( '/contacto', 'WelcomeController@contacto' );
-
-// Pasando parámetros dinámicos a una ruta, filtro de ruta entero
-Route :: get( '/usuario/{id}', 'UserController@show' )
+/* PATH: /usuarios */
+Route :: get( '/usuarios/{id}', 'UserController@show' )        // Pasando parámetros dinámicos a una ruta, filtro de ruta entero
       -> where( 'id', '[0-9]+' );
 
+Route :: get( '/usuarios', 'UserController@index' );
+
+Route :: get( '/usuarios/nuevo', 'UserController@create' );    
+
+/* PATH: /contacto */
+Route :: get( '/contacto', 'WelcomeController@contacto' );
+
+/*
 // Ruta con múltiples peticiones
 Route :: get( 'usuario/{slug}', function ( $slug ) {
     return "Acción: $slug";
@@ -30,9 +36,6 @@ Route :: get( 'usuario/{slug}', function ( $slug ) {
 Route :: get( '/usuario/{nombre}', 'WelcomeController@thenName' )
       -> where( 'nombre', '[-\w]+' );
 
-Route :: get( '/usuarios', 'UserController@index' );
-
-Route :: get( '/usuarios/nuevo', 'UserController@create' );    # Corrige ERROR
 
 // Pasando parámetros dinámicos opcionales a una ruta
 Route :: get( '/usuarios/{name}/{nickname?}', 'WelcomeUserController' );# Solo llamamos al controlador sin indicarle el nombre del método
@@ -48,3 +51,4 @@ Route :: get( '/usuario/{nombres}/{apodo}', 'WelcomeController@welcomeNameNickna
          'nombres' => '[-\w]+',
          'apodo' => '[-\w]+'
       ]);;
+*/
