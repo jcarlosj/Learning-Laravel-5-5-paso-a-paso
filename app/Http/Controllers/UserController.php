@@ -26,8 +26,11 @@ class UserController extends Controller
 
     public function show( $id )
     {
+        $user = User :: find( $id );
+        #dd( 'show', $user );
+
         # (Sin espacios) pues users hace referencia al directorio y el archivo así: /users/show.blade.php
-        return view( 'users.show', compact( 'id' ) );
+        return view( 'users.show', compact( 'user' ) );
     }
 
     public function create()
