@@ -44,13 +44,19 @@ class UsersModuleTest extends TestCase
               -> assertSee( 'No hay usuarios registrados' );     # Comprueba que el código fuente de la página generada se puede ser ese texto
     }
     /** @test */
-    function it_loads_the_users_details_page()
+    function it_displays_the_users_details()
     {
+        $user = factory( User :: class ) -> create([
+            'name' => 'Luisa Bazalar',
+            'email' => 'lubazalar@correo.co'
+        ]);
         $this -> withoutExceptionHandling();
 
-        $this -> get( '/usuario/5' )        # Simula petición a la URL /usuario/5
+        $this -> get( '/usuarios/' .$user -> id )        # Simula petición a la URL /usuario/5
         -> assertStatus( 200 )              # Comprueba el estado de la petición
-        -> assertSee( 'id: 5' );            # Comprueba que el código fuente de la página generada se puede ser ese texto
+        -> assertSee( 'Luisa Bazalar' )
+        -> assertSee( 'lubazalar@correo.co' )
+        -> assertSee( '#' .$user -> id );   # Comprueba que el código fuente de la página generada se puede ser ese texto
     }
     /** @test */
     function it_loads_the_new_user_page()
