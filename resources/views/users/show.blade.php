@@ -1,9 +1,10 @@
 @extends( 'layout' )         {{-- Extiende al archivo layout.blade.php Template del sitio --}}
 
-@section( 'title', "Usuario de {$id} " )        {{-- Define la sección 'title' (forma abreviada) --}}
+@section( 'title', $user -> name )        {{-- Define la sección 'title' (forma abreviada) --}}
 @section( 'content' )        {{-- Define la sección 'content' --}}
 
-<h2>ID de Usuario</h2>
-<p>id: {{ $id }}</p>
+<h2>Usuario #{{ $user -> id }}</h2>
+<p><b>Nombre:</b> {{ $user -> name }}</p>
+<p><b>Correo:</b> {{ $user -> email }}</p>
 
 @endsection
