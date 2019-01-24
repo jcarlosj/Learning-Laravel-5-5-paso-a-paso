@@ -59,6 +59,12 @@ class UsersModuleTest extends TestCase
         -> assertSee( '#' .$user -> id );   # Comprueba que el código fuente de la página generada se puede ser ese texto
     }
     /** @test */
+    function it_displays_a_404_error_if_the_user_is_not_found() {
+        $this -> get( '/usuarios/1000' )
+              -> assertStatus( 404 )
+              -> assertSee( 'Página no encontrada!' );
+    }
+    /** @test */
     function it_loads_the_new_user_page()
     {
         $this -> withoutExceptionHandling();    # Permitirá que los ERRORES se puedan visualizar en la terminal
