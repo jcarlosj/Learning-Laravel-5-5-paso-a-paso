@@ -6,5 +6,6 @@
 <h2>Usuario #{{ $user -> id }}</h2>
 <p><b>Nombre:</b> {{ $user -> name }}</p>
 <p><b>Correo:</b> {{ $user -> email }}</p>
+<p><a href="{{ url( "/usuarios" ) }}">Regresar</a></p>
 
 @endsection

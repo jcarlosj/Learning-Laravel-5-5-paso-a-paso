@@ -6,7 +6,10 @@
 <h2>{{ $title }}</h2>
 <ul>
     @forelse ( $users as $key => $user )
-        <li>{{ $user -> name }}, <small>{{ $user -> email }}</small></li>
+        <li>
+            {{ $user -> name }}, <small>{{ $user -> email }}</small>
+            <a href="{{ url( "/usuarios/{$user -> id}" ) }}">Ver detalles</a>
+        </li>
     @empty
         <li>No hay usuarios registrados</li>
     @endforelse
