@@ -24,11 +24,9 @@ class UserController extends Controller
         return view( 'users.index', compact( 'title', 'users' ) );  # Pasa datos a la vista que son variables locales usando sus nombres para convertirlas en un array asociativo
     }
 
-    public function show( $id )
+    public function show( User $user )
     {
-        $user = User :: findOrFail( $id );    # El Helper findOrFail() retornará un código de error 404 automáticamente si los datos no son encontrados solo tendremos que tener una vista 404 creada
-        #dd( 'show', $user );
-
+        dd( $user );    
         # (Sin espacios) pues users hace referencia al directorio y el archivo así: /users/show.blade.php
         return view( 'users.show', compact( 'user' ) );
     }

@@ -16,8 +16,8 @@ Route::get('/', function () {
 });
 
 /* PATH: /usuarios */
-Route :: get( '/usuarios/{id}', 'UserController@show' )        // Pasando parámetros dinámicos a una ruta, filtro de ruta entero
-      -> where( 'id', '[0-9]+' )
+Route :: get( '/usuarios/{user}', 'UserController@show' )      // Pasando parámetros dinámicos a una ruta, filtro de ruta entero
+      -> where( 'user', '[0-9]+' )
       -> name( 'users.show' );                                 // Nombre de la ruta
 
 Route :: get( '/usuarios', 'UserController@index' )
