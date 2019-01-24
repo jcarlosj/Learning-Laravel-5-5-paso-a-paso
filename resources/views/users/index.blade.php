@@ -8,7 +8,7 @@
     @forelse ( $users as $key => $user )
         <li>
             {{ $user -> name }}, <small>{{ $user -> email }}</small>
-            <a href="{{ action( 'UserController@show', [ 'id' => $user -> id ] ) }}">Ver detalles</a>
+            <a href="{{ route( 'users.show', [ 'id' => $user -> id ] ) }}">Ver detalles</a>
         </li>
     @empty
         <li>No hay usuarios registrados</li>

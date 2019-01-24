@@ -17,14 +17,20 @@ Route::get('/', function () {
 
 /* PATH: /usuarios */
 Route :: get( '/usuarios/{id}', 'UserController@show' )        // Pasando parámetros dinámicos a una ruta, filtro de ruta entero
-      -> where( 'id', '[0-9]+' );
+      -> where( 'id', '[0-9]+' )
+      -> name( 'users.show' );                                 // Nombre de la ruta
 
-Route :: get( '/usuarios', 'UserController@index' );
+Route :: get( '/usuarios', 'UserController@index' )
+      -> name( 'users.index' );                                // Nombre de la ruta
 
-Route :: get( '/usuarios/nuevo', 'UserController@create' );    
+Route :: get( '/usuarios/nuevo', 'UserController@create' )
+      -> name( 'users.create' );                               // Nombre de la ruta
+
+# NOTA: Importante definir un estándar de nombres de ruta pary mantenerlo para todo el proyecto
 
 /* PATH: /contacto */
-Route :: get( '/contacto', 'WelcomeController@contacto' );
+Route :: get( '/contacto', 'WelcomeController@contacto' )
+      -> name( 'site.contact' );                               // Nombre de la ruta
 
 /*
 // Ruta con múltiples peticiones
