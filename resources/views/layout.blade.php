@@ -38,7 +38,7 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="{{ url( "/usuarios" ) }}">Usuarios <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="{{ action( 'UserController@index' ) }}">Usuarios <span class="sr-only">(current)</span></a>
         </li>
         <!--
             <li class="nav-item">

@@ -6,6 +6,6 @@
 <h2>Usuario #{{ $user -> id }}</h2>
 <p><b>Nombre:</b> {{ $user -> name }}</p>
 <p><b>Correo:</b> {{ $user -> email }}</p>
-<p><a href="{{ url() -> previous() }}">Regresar</a></p>
+<p><a href="{{ action( 'UserController@index' ) }}">Regresar</a></p>
 
 @endsection
