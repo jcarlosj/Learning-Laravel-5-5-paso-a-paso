@@ -29,6 +29,14 @@ class UserController extends Controller
         $user = User :: find( $id );
         #dd( 'show', $user );
 
+        if( $user == null ) {
+            return response() -> view(     # El Helper response() permite personalizar el código de estado HTTP de la respuesta y los encabezados
+                'errors.404',              # Vista a mostrar: /errors/404.blade.php
+                [],                        # Datos que se pasarán a la vista
+                404                        # Código de estado que personalizamos 
+            );
+        }
+
         # (Sin espacios) pues users hace referencia al directorio y el archivo así: /users/show.blade.php
         return view( 'users.show', compact( 'user' ) );
     }
