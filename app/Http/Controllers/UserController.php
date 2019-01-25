@@ -38,6 +38,6 @@ class UserController extends Controller
 
     public function store()
     {
-        return 'Procesando información';
+        return 'Procesando información!';
     }
 }

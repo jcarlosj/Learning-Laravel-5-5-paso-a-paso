@@ -73,4 +73,12 @@ class UsersModuleTest extends TestCase
         -> assertStatus( 200 )                  # Comprueba el estado de la petición
         -> assertSee( 'Crea usuario nuevo' );   # Comprueba que el código fuente de la página generada se puede ser ese texto
     }
+    /** @test */
+    function it_creates_a_new_user() {
+        $this -> post( '/usuarios', [
+            'name' => 'Juan Carlos Jiménez Gutiérrez',
+            'email' => 'jcjimenez29@misena.edu.co',
+            'password' => 'laravel'
+        ]) -> assertSee( 'Procesando información!' );
+    }
 }
