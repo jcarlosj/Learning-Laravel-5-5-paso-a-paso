@@ -85,10 +85,10 @@ class UsersModuleTest extends TestCase
         ]) -> assertRedirect( route( 'users.index' ) );                  # Verifica que haya una redirección al listado de usuarios usando el Helper Rout para hacerlo
 
         # Valida datos contra la base de datos
-        $this -> assertDatabaseHas( 'users', [              # Nombre de la tabla
+        $this -> assertCredentials([                        # El método assertCredentials() no requiere el nombre de la tabla siempre que usemos la tabla por defecto de la instalación de Laravel
             'name' => 'Juan Carlos Jiménez Gutiérrez',      # Campos/Columnas y los valores que esperamos encontrar
             'email' => 'jcjimenez29@misena.edu.co',
-            #'password' => 'laravel'                        # Esta contraseña la hemos encriptado (Aun no validamos esta campo)
+            'password' => 'laravel'                         # El método assertCredentials() perminte validad la contraseña de un usuario cosa que el método assertDatabaseHas() no permite. Además sin usar el método de encriptación.
         ]);
     }
 }
