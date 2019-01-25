@@ -25,6 +25,8 @@ Route :: get( '/usuarios', 'UserController@index' )
 
 Route :: get( '/usuarios/nuevo', 'UserController@create' )
       -> name( 'users.create' );                               // Nombre de la ruta
+Route :: post( '/usuarios/crear', 'UserController@store' )
+      -> name( 'users.store' );
 
 # NOTA: Importante definir un estándar de nombres de ruta pary mantenerlo para todo el proyecto
 
