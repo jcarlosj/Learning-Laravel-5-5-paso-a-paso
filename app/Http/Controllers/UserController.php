@@ -38,6 +38,9 @@ class UserController extends Controller
 
     public function store()
     {
+        $data = request() -> all();           # Obtenemos los datos enviados a través del formulario
+        dd( $data );
+
         return 'Procesando información!';
     }
 }

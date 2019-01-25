@@ -75,10 +75,20 @@ class UsersModuleTest extends TestCase
     }
     /** @test */
     function it_creates_a_new_user() {
-        $this -> post( '/usuarios', [
-            'name' => 'Juan Carlos Jiménez Gutiérrez',
+        $this -> withoutExceptionHandling();    # Permitirá que los ERRORES se puedan visualizar en la terminal
+
+        # Simula el envio de los datos por el método POST a través del formulario
+        $this -> post( '/usuarios', [                        # Simula petición POST a la URL /usuarios
+            'name' => 'Juan Carlos Jiménez Gutiérrez',       # Datos enviados
             'email' => 'jcjimenez29@misena.edu.co',
             'password' => 'laravel'
-        ]) -> assertSee( 'Procesando información!' );
+        ]);
+
+        # Valida datos contra la base de datos
+        $this -> assertDatabaseHas( 'users', [              # Nombre de la tabla
+            'name' => 'Juan Carlos Jiménez Gutiérrez',      # Campos/Columnas y los valores que esperamos encontrar
+            'email' => 'jcjimenez29@misena.edu.co',
+            #'password' => 'laravel'                        # Esta contraseña la hemos encriptado (Aun no validamos esta campo)
+        ]);
     }
 }
