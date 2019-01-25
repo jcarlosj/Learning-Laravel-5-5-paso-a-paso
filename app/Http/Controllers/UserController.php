@@ -39,8 +39,14 @@ class UserController extends Controller
     public function store()
     {
         $data = request() -> all();           # Obtenemos los datos enviados a través del formulario
-        dd( $data );
+        #dd( $data );
 
-        return 'Procesando información!';
+        User :: create([
+            'name' => $data[ 'name' ],
+            'email' => $data[ 'email' ],
+            'password' => bcrypt( $data[ 'password' ] )
+        ]);
+
+        return redirect( 'usuarios' );
     }
 }

@@ -82,7 +82,7 @@ class UsersModuleTest extends TestCase
             'name' => 'Juan Carlos Jiménez Gutiérrez',       # Datos enviados
             'email' => 'jcjimenez29@misena.edu.co',
             'password' => 'laravel'
-        ]);
+        ]) -> assertRedirect( 'usuarios' );                  # Verifica que haya una redirección al listado de usuarios
 
         # Valida datos contra la base de datos
         $this -> assertDatabaseHas( 'users', [              # Nombre de la tabla
