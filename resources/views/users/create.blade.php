@@ -4,8 +4,8 @@
 @section( 'content' )        {{-- Define la sección 'content' --}}
 
     <h2>Crear usuario</h2>
-    <form action="{{ url( 'usuarios/crear' ) }}" method="post">
-        {!! csrf_field() !!}         
+    <form action="{{ url( 'usuarios' ) }}" method="post">
+        {!! csrf_field() !!}
         <button type="submit">Crear usuario</button>
     </form>
 

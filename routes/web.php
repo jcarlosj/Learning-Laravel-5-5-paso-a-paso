@@ -20,12 +20,12 @@ Route :: get( '/usuarios/{user}', 'UserController@show' )      // Pasando parám
       -> where( 'user', '[0-9]+' )
       -> name( 'users.show' );                                 // Nombre de la ruta
 
-Route :: get( '/usuarios', 'UserController@index' )
+Route :: get( '/usuarios', 'UserController@index' )            # <--- RUTAS IGUALES con DIFERENTE MÉTODO HTTP
       -> name( 'users.index' );                                // Nombre de la ruta
 
 Route :: get( '/usuarios/nuevo', 'UserController@create' )
       -> name( 'users.create' );                               // Nombre de la ruta
-Route :: post( '/usuarios/crear', 'UserController@store' )
+Route :: post( '/usuarios', 'UserController@store' )           # <--- RUTAS IGUALES con DIFERENTE MÉTODO HTTP
       -> name( 'users.store' );
 
 # NOTA: Importante definir un estándar de nombres de ruta pary mantenerlo para todo el proyecto
