@@ -47,6 +47,6 @@ class UserController extends Controller
             'password' => bcrypt( $data[ 'password' ] )
         ]);
 
-        return redirect( 'usuarios' );
+        return redirect( route( 'users.index' ) );
     }
 }
