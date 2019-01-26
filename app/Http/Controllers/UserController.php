@@ -41,6 +41,11 @@ class UserController extends Controller
         $data = request() -> all();           # Obtenemos los datos enviados a través del formulario
         #dd( $data );
 
+        # Valida que el campo 'name' esta vacío
+        if( empty( $data[ 'name' ] ) ) {
+            return;     # Finaliza la ejecución de la acción y no crear el usuario
+        }
+
         User :: create([
             'name' => $data[ 'name' ],
             'email' => $data[ 'email' ],
