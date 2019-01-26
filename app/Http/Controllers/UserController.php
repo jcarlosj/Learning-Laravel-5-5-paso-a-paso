@@ -38,13 +38,13 @@ class UserController extends Controller
 
     public function store()
     {
-        $data = request() -> all();           # Obtenemos los datos enviados a través del formulario
+        #$data = request() -> all();           # Obtenemos los datos enviados a través del formulario
         #dd( $data );
 
-        User :: create([
-            'name' => $data[ 'name' ],
-            'email' => $data[ 'email' ],
-            'password' => bcrypt( $data[ 'password' ] )
+        User :: create([                                           # Alternativas para obtener datos de un campo proveniente del objeto Request
+            'name' => request( 'name' ),                           # Forma 1: Pasando como parámetro al método request(), el nombre del campo del formulario (o propiedad del objeto Request)
+            'email' => request() -> email,                         # Forma 2: Accesando directamente a la propiedad del objeto Request que hace referencia al campo del formulario
+            'password' => bcrypt( request() -> get( 'password' ) ) # Forma 3: Encadenando al objeto request() el método get() al que se le pasa como argumento el nombre del campo del formulario (o propiedad del objeto Request)
         ]);
 
         return redirect( route( 'users.index' ) );
