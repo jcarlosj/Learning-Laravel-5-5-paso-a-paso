@@ -43,7 +43,9 @@ class UserController extends Controller
 
         # Valida que el campo 'name' esta vacío
         if( empty( $data[ 'name' ] ) ) {
-            return redirect( 'usuarios/nuevo' );     # Finaliza la ejecución y redirecciona al formulario con la URL fija /usuarios/nuevo
+            return redirect( 'usuarios/nuevo' ) -> withErrors([     # Finaliza la ejecución y redirecciona al formulario con la URL fija /usuarios/nuevo
+                'name' => 'El nombre es obligatorio!'               # Agrega el campo al listado de errores esperados a la sesión usando el método proporcionado por Laravel withErrors() para esta tarea
+            ]);
         }
 
         User :: create([
