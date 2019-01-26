@@ -91,4 +91,19 @@ class UsersModuleTest extends TestCase
             'password' => 'laravel'                         # El método assertCredentials() perminte validad la contraseña de un usuario cosa que el método assertDatabaseHas() no permite. Además sin usar el método de encriptación.
         ]);
     }
+    /** @test */
+    function the_name_is_required() {
+        $this -> withoutExceptionHandling();    # Permitirá que los ERRORES se puedan visualizar en la terminal
+
+        # Envia petición de tipo post sin el campo requerido
+        $this -> post( '/usuarios', [
+            'email' => 'melisasanchezz@correo.co',
+            'password' => 'laravel'
+        ]);
+
+        # Valida que la base de datos no registro este "nuevo" usuarios
+        $this -> assertDatabaseMissing( 'users', [         # Nombre de la tabla donde deseamos validar el registro
+            'email' => 'melisasanchezz@correo.co'          # Email: que se espera no encontrar dentro de los registros en la base de datos
+        ]);
+    }
 }
