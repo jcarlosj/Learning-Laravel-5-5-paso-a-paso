@@ -26,7 +26,7 @@ class UserController extends Controller
 
     public function show( User $user )
     {
-        dd( $user );
+        #dd( $user );
         # (Sin espacios) pues users hace referencia al directorio y el archivo así: /users/show.blade.php
         return view( 'users.show', compact( 'user' ) );
     }
