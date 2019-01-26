@@ -99,7 +99,7 @@ class UsersModuleTest extends TestCase
         $this -> post( '/usuarios', [
             'email' => 'melisasanchezz@correo.co',
             'password' => 'laravel'
-        ]);
+        ]) -> assertRedirect( 'usuarios/nuevo' );          # La petición espera una redirección a la URL /usuarios/nuevo (el formulario de registro)
 
         # Valida que la base de datos no registro este "nuevo" usuarios
         $this -> assertDatabaseMissing( 'users', [         # Nombre de la tabla donde deseamos validar el registro

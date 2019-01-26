@@ -43,7 +43,7 @@ class UserController extends Controller
 
         # Valida que el campo 'name' esta vacío
         if( empty( $data[ 'name' ] ) ) {
-            return;     # Finaliza la ejecución de la acción y no crear el usuario
+            return redirect( 'usuarios/nuevo' );     # Finaliza la ejecución y redirecciona al formulario con la URL fija /usuarios/nuevo
         }
 
         User :: create([
