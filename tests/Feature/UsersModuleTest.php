@@ -93,7 +93,7 @@ class UsersModuleTest extends TestCase
     }
     /** @test */
     function the_name_is_required() {
-        $this -> withoutExceptionHandling();    # Permitirá que los ERRORES se puedan visualizar en la terminal
+        #$this -> withoutExceptionHandling();    # Permitirá que los ERRORES se puedan visualizar en la terminal
 
         # Envia petición de tipo post sin el campo requerido
         $this -> post( '/usuarios', [

@@ -38,15 +38,10 @@ class UserController extends Controller
 
     public function store()
     {
-        $data = request() -> all();           # Obtenemos los datos enviados a través del formulario
+        $data = request() -> validate([     # Método para validar automáticamente un campo específico de un conjunto de campos extraidos de una consulta (redirigiendo automáticamente a la URL anterior)
+            'name' => 'required'            # Registro al listado de errores de sesión de campo esperado y una cadena con las reglas de validación que se quieren aplicar
+        ]); # Obtenemos los datos enviados a través del formulario
         #dd( $data );
-
-        # Valida que el campo 'name' esta vacío
-        if( empty( $data[ 'name' ] ) ) {
-            return redirect( 'usuarios/nuevo' ) -> withErrors([     # Finaliza la ejecución y redirecciona al formulario con la URL fija /usuarios/nuevo
-                'name' => 'El nombre es obligatorio!'               # Agrega el campo al listado de errores esperados a la sesión usando el método proporcionado por Laravel withErrors() para esta tarea
-            ]);
-        }
 
         User :: create([
             'name' => $data[ 'name' ],
