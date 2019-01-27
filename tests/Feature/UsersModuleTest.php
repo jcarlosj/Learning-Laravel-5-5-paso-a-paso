@@ -106,8 +106,9 @@ class UsersModuleTest extends TestCase
                  ]);
 
         # Valida que la base de datos no registro este "nuevo" usuarios
-        $this -> assertDatabaseMissing( 'users', [         # Nombre de la tabla donde deseamos validar el registro
-            'email' => 'melisasanchezz@correo.co'          # Email: que se espera no encontrar dentro de los registros en la base de datos
-        ]);
+        $this -> assertEquals( 0 , User :: count() );       # Segunda alternativa para validar que el registro no se ha realizado
+        #$this -> assertDatabaseMissing( 'users', [         # Nombre de la tabla donde deseamos validar el registro
+        #    'email' => 'melisasanchezz@correo.co'          # Email: que se espera no encontrar dentro de los registros en la base de datos
+        #]);
     }
 }
