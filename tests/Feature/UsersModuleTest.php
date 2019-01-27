@@ -96,13 +96,14 @@ class UsersModuleTest extends TestCase
         #$this -> withoutExceptionHandling();    # Permitirá que los ERRORES se puedan visualizar en la terminal
 
         # Envia petición de tipo post sin el campo requerido
-        $this -> post( '/usuarios', [
-            'email' => 'melisasanchezz@correo.co',
-            'password' => 'laravel'
-        ]) -> assertRedirect( 'usuarios/nuevo' )           # La petición espera una redirección a la URL /usuarios/nuevo (el formulario de registro)
-           -> assertSessionHasErrors([                     # Espera la existencia de un campo en el listado de errores de la sesión (en este caso el campo requerido)
-               'name'  => 'El nombre es obligatorio!'
-            ]);
+        $this -> from( 'usuarios/nuevo' )                        # Indica URL de origen de la petición
+              -> post( '/usuarios', [                            # Indica tipo de petición y ruta a la que se lanza la petición
+                   'email' => 'melisasanchezz@correo.co',
+                   'password' => 'laravel'
+              ]) -> assertRedirect( 'usuarios/nuevo' )           # La petición espera una redirección a la URL /usuarios/nuevo (el formulario de registro)
+                 -> assertSessionHasErrors([                     # Espera la existencia de un campo en el listado de errores de la sesión (en este caso el campo requerido)
+                      'name'  => 'El nombre es obligatorio!'
+                 ]);
 
         # Valida que la base de datos no registro este "nuevo" usuarios
         $this -> assertDatabaseMissing( 'users', [         # Nombre de la tabla donde deseamos validar el registro
