@@ -4,6 +4,10 @@
 @section( 'content' )        {{-- Define la sección 'content' --}}
 
     <h2>Crear usuario</h2>
+    @if( $errors -> any() )
+        <p>Hay errores!</p>
+        {{ dd( $errors ) }}
+    @endif
     <form action="{{ url( 'usuarios' ) }}" method="post">
         {!! csrf_field() !!}
         <label for="name">Nombre</label>
