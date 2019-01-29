@@ -8,12 +8,7 @@
     {{-- Valida si existen errores en la sesión para esta vista  --}}
     @if( $errors -> any() )
         <div class="alert alert-danger">
-            <h5>Por favor corrige los siguientes errores:</h5>
-            <ul>
-                @foreach ( $errors -> all() as $error )
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+            <h5>Por favor corrige los campos que se indican</h5>
         </div>
     @endif
 
@@ -21,6 +16,10 @@
         {!! csrf_field() !!}
         <label for="name">Nombre</label>
         <input id="name" type="text" name="name" placeholder="Ej: Juliana Puerta" value="{{ old( 'name' ) }}">
+        @if( $errors -> has( 'name' ) )
+            {{-- Imprime el primer error dentro del campo nombre --}}
+            <small class="alert alert-danger">{{ $errors -> first( 'name' ) }}</small>
+        @endif
         <br />
         <label for="email">Correo</label>
         <input id="email" type="email" name="email" placeholder="Ej: julipuerta@correo.co" value="{{ old( 'email' ) }}">
