@@ -4,13 +4,19 @@
 @section( 'content' )        {{-- Define la sección 'content' --}}
 
     <h2>Crear usuario</h2>
+
+    {{-- Valida si existen errores en la sesión para esta vista  --}}
     @if( $errors -> any() )
-        <ul>
-            @foreach ( $errors -> all() as $error )
-                <li>{{ $error }}</li> 
-            @endforeach
-        </ul>
+        <div class="alert alert-danger">
+            <h5>Por favor corrige los siguientes errores:</h5>
+            <ul>
+                @foreach ( $errors -> all() as $error )
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
     @endif
+
     <form action="{{ url( 'usuarios' ) }}" method="post">
         {!! csrf_field() !!}
         <label for="name">Nombre</label>
