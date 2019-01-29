@@ -5,8 +5,11 @@
 
     <h2>Crear usuario</h2>
     @if( $errors -> any() )
-        <p>Hay errores!</p>
-        {{ dd( $errors ) }}
+        <ul>
+            @foreach ( $errors -> all() as $error )
+                <li>{{ $error }}</li> 
+            @endforeach
+        </ul>
     @endif
     <form action="{{ url( 'usuarios' ) }}" method="post">
         {!! csrf_field() !!}
