@@ -39,7 +39,9 @@ class UserController extends Controller
     public function store()
     {
         $data = request() -> validate([     # Método para validar automáticamente un campo específico de un conjunto de campos extraidos de una consulta (redirigiendo automáticamente a la URL anterior)
-            'name' => 'required'            # Registro al listado de errores de sesión de campo esperado y una cadena con las reglas de validación que se quieren aplicar
+            'name' => 'required',            # Registro al listado de errores de sesión de campo esperado y una cadena con las reglas de validación que se quieren aplicar
+            'email' => '',
+            'password' => ''
         ], [
             'name.required' => 'El nombre es obligatorio!'   # Reescribe los mensaje por defecto (en Inglés) retornados por el método validate que se encuentran en /resources/lang/en/validate.php
         ]); # Obtenemos los datos enviados a través del formulario

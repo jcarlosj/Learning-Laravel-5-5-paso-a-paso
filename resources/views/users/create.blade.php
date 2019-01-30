@@ -3,7 +3,7 @@
 @section( 'title', 'Crear usuario' )        {{-- Define la sección 'title' (forma abreviada) --}}
 @section( 'content' )        {{-- Define la sección 'content' --}}
 
-    <h2>Crear usuario</h2>
+    <h2>Crea usuario nuevo</h2>
 
     {{-- Valida si existen errores en la sesión para esta vista  --}}
     @if( $errors -> any() )
