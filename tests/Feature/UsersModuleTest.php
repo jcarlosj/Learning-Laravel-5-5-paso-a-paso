@@ -122,7 +122,9 @@ class UsersModuleTest extends TestCase
                    'email' => '',
                    'password' => 'laravel'
               ]) -> assertRedirect( 'usuarios/nuevo' )           # La petición espera una redirección a la URL /usuarios/nuevo (el formulario de registro)
-                 -> assertSessionHasErrors([ 'email' ]);         # Espera la existencia de un campo en el listado de errores de la sesión (en este caso el campo requerido)
+                 -> assertSessionHasErrors([                     # Espera la existencia de un campo en el listado de errores de la sesión (en este caso el campo requerido)
+                   'email' => 'El correo electrónico es obligatorio!'
+                 ]);
 
         # Valida que la base de datos no registro este "nuevo" usuarios
         $this -> assertEquals( 0 , User :: count() );       # Segunda alternativa para validar que el registro no se ha realizado
@@ -139,7 +141,9 @@ class UsersModuleTest extends TestCase
                    'email' => 'correo-no-valido',
                    'password' => 'laravel'
               ]) -> assertRedirect( 'usuarios/nuevo' )           # La petición espera una redirección a la URL /usuarios/nuevo (el formulario de registro)
-                 -> assertSessionHasErrors([ 'email' ]);         # Espera la existencia de un campo en el listado de errores de la sesión (en este caso el campo requerido)
+                 -> assertSessionHasErrors([                     # Espera la existencia de un campo en el listado de errores de la sesión (en este caso el campo requerido)
+                   'email' => 'No es un correo electrónico válido!'
+                 ]);
 
         # Valida que la base de datos no registro este "nuevo" usuarios
         $this -> assertEquals( 0 , User :: count() );       # Segunda alternativa para validar que el registro no se ha realizado
@@ -160,7 +164,9 @@ class UsersModuleTest extends TestCase
                    'email' => 'melisasanchezz@correo.co',
                    'password' => 'laravel'
               ]) -> assertRedirect( 'usuarios/nuevo' )           # La petición espera una redirección a la URL /usuarios/nuevo (el formulario de registro)
-                 -> assertSessionHasErrors([ 'email' ]);         # Espera la existencia de un campo en el listado de errores de la sesión (en este caso el campo requerido)
+                 -> assertSessionHasErrors([                     # Espera la existencia de un campo en el listado de errores de la sesión (en este caso el campo requerido)
+                   'email' => 'Este correo electrónico ya está registrado!'
+                 ]);
 
         # Valida que la base de datos no registro este "nuevo" usuarios
         $this -> assertEquals( 1 , User :: count() );       # Segunda alternativa para validar que el registro no se ha realizado
@@ -177,7 +183,9 @@ class UsersModuleTest extends TestCase
                    'email' => 'melisasanchezz@correo.co',
                    'password' => ''
               ]) -> assertRedirect( 'usuarios/nuevo' )           # La petición espera una redirección a la URL /usuarios/nuevo (el formulario de registro)
-                 -> assertSessionHasErrors([ 'password' ]);         # Espera la existencia de un campo en el listado de errores de la sesión (en este caso el campo requerido)
+                 -> assertSessionHasErrors([                     # Espera la existencia de un campo en el listado de errores de la sesión (en este caso el campo requerido)
+                   'password' => 'La contraseña es obligatoria!'
+                 ]);
 
         # Valida que la base de datos no registro este "nuevo" usuarios
         $this -> assertEquals( 0 , User :: count() );       # Segunda alternativa para validar que el registro no se ha realizado
@@ -192,9 +200,11 @@ class UsersModuleTest extends TestCase
               -> post( '/usuarios', [                            # Indica tipo de petición y ruta a la que se lanza la petición
                    'name' => 'Melisa Sánchez Zambrano',
                    'email' => 'melisasanchezz@correo.co',
-                   'password' => ''                              # No tiene caracteres y mínimo debe tener 7 caracteres
+                   'password' => '2deE2'                         # Solo tiene 5 caracteres y mínimo debe tener 7 caracteres
               ]) -> assertRedirect( 'usuarios/nuevo' )           # La petición espera una redirección a la URL /usuarios/nuevo (el formulario de registro)
-                 -> assertSessionHasErrors([ 'password' ]);      # Espera la existencia de un campo en el listado de errores de la sesión (en este caso el campo requerido)
+                 -> assertSessionHasErrors([                     # Espera la existencia de un campo en el listado de errores de la sesión (en este caso el campo requerido)
+                   'password' => 'La contraseña debe tener mínimo 7 caracteres!'
+                 ]);
 
         # Valida que la base de datos no registro este "nuevo" usuarios
         $this -> assertEquals( 0 , User :: count() );       # Segunda alternativa para validar que el registro no se ha realizado
@@ -211,7 +221,9 @@ class UsersModuleTest extends TestCase
                    'email' => 'melisasanchezz@correo.co',
                    'password' => '#er2?_3s'                      # No es alfanumérico
               ]) -> assertRedirect( 'usuarios/nuevo' )           # La petición espera una redirección a la URL /usuarios/nuevo (el formulario de registro)
-                 -> assertSessionHasErrors([ 'password' ]);      # Espera la existencia de un campo en el listado de errores de la sesión (en este caso el campo requerido)
+                 -> assertSessionHasErrors([                     # Espera la existencia de un campo en el listado de errores de la sesión (en este caso el campo requerido)
+                   'password'  => 'La contraseña debe ser alfanumérica!'
+                 ]);
 
         # Valida que la base de datos no registro este "nuevo" usuarios
         $this -> assertEquals( 0 , User :: count() );       # Segunda alternativa para validar que el registro no se ha realizado

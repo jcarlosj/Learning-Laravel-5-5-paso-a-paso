@@ -23,9 +23,17 @@
         <br />
         <label for="email">Correo</label>
         <input id="email" type="email" name="email" placeholder="Ej: julipuerta@correo.co" value="{{ old( 'email' ) }}">
+        @if( $errors -> has( 'email' ) )
+            {{-- Imprime el primer error dentro del campo email --}}
+            <small class="alert alert-danger">{{ $errors -> first( 'email' ) }}</small>
+        @endif
         <br />
         <label for="password">Contraseña</label>
         <input id="password" type="password" name="password" placeholder="6 o más caracteres">
+        @if( $errors -> has( 'password' ) )
+            {{-- Imprime el primer error dentro del campo password --}}
+            <small class="alert alert-danger">{{ $errors -> first( 'password' ) }}</small>
+        @endif
         <br />
         <button type="submit">Crear usuario</button>
     </form>
