@@ -183,4 +183,21 @@ class UsersModuleTest extends TestCase
         $this -> assertEquals( 0 , User :: count() );       # Segunda alternativa para validar que el registro no se ha realizado
 
     }
+    /** @test */
+    function it_password_must_be_min_size_seven_characters() {
+        #$this -> withoutExceptionHandling();    # Permitirá que los ERRORES se puedan visualizar en la terminal
+
+        # Envia petición de tipo post sin el campo requerido
+        $this -> from( 'usuarios/nuevo' )                        # Indica URL de origen de la petición
+              -> post( '/usuarios', [                            # Indica tipo de petición y ruta a la que se lanza la petición
+                   'name' => 'Melisa Sánchez Zambrano',
+                   'email' => 'melisasanchezz@correo.co',
+                   'password' => ''                              # No tiene caracteres y mínimo debe tener 7 caracteres
+              ]) -> assertRedirect( 'usuarios/nuevo' )           # La petición espera una redirección a la URL /usuarios/nuevo (el formulario de registro)
+                 -> assertSessionHasErrors([ 'password' ]);      # Espera la existencia de un campo en el listado de errores de la sesión (en este caso el campo requerido)
+
+        # Valida que la base de datos no registro este "nuevo" usuarios
+        $this -> assertEquals( 0 , User :: count() );       # Segunda alternativa para validar que el registro no se ha realizado
+
+    }
 }
