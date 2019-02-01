@@ -64,6 +64,6 @@ class UserController extends Controller
 
     public function edit()
     {
-        return view( 'users.edit' );
+        return view( 'users.edit', [ 'user' => 'Hey estamos en la vista editar!' ] );    # Retorna la vista a la que se le pasa la variable 'user' como parámetro
     }
 }

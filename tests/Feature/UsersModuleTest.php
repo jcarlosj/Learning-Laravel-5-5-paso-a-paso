@@ -239,6 +239,7 @@ class UsersModuleTest extends TestCase
         $this -> get( "/usuarios/{$user -> id}/editar" )        # /usuarios/5/editar
               -> assertStatus( 200 )
               -> assertViewIs( 'users.edit' )                   # Confirma que la vista esperada (usando en este caso el nombre de la ruta)
-              -> assertSee( 'Edita usuario' );
+              -> assertSee( 'Edita usuario' )
+              -> assertViewHas( 'user' );                       # Confirma que la vista tenga acceso a la variable 'user'
     }
 }
