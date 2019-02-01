@@ -15,14 +15,14 @@
     <form action="{{ url( 'usuarios' ) }}" method="post">
         {!! csrf_field() !!}
         <label for="name">Nombre</label>
-        <input id="name" type="text" name="name" placeholder="Ej: Juliana Puerta" value="{{ old( 'name' ) }}">
+        <input id="name" type="text" name="name" placeholder="Ej: Juliana Puerta" value="{{ old( 'name', $user -> name ) }}">
         @if( $errors -> has( 'name' ) )
             {{-- Imprime el primer error dentro del campo nombre --}}
             <small class="alert alert-danger">{{ $errors -> first( 'name' ) }}</small>
         @endif
         <br />
         <label for="email">Correo</label>
-        <input id="email" type="email" name="email" placeholder="Ej: julipuerta@correo.co" value="{{ old( 'email' ) }}">
+        <input id="email" type="email" name="email" placeholder="Ej: julipuerta@correo.co" value="{{ old( 'email', $user -> email ) }}">
         @if( $errors -> has( 'email' ) )
             {{-- Imprime el primer error dentro del campo email --}}
             <small class="alert alert-danger">{{ $errors -> first( 'email' ) }}</small>
