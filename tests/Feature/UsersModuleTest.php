@@ -240,6 +240,8 @@ class UsersModuleTest extends TestCase
               -> assertStatus( 200 )
               -> assertViewIs( 'users.edit' )                   # Confirma que la vista esperada (usando en este caso el nombre de la ruta)
               -> assertSee( 'Edita usuario' )
-              -> assertViewHas( 'user', $user );                # Confirma que la vista tenga acceso a la variable 'user' forzando a que este sea el objeto 'user'
+              -> assertViewHas( 'user', function( $viewUser ) use ( $user ) {                           # Compara dos objetos: el usuario de la vista con el usuario que se tiene en la prueba
+                  return $viewUser -> id == $user -> id;
+              });
     }
 }
