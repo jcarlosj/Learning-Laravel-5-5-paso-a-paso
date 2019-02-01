@@ -25,10 +25,12 @@ Route :: get( '/usuarios', 'UserController@index' )            # <--- RUTAS IGUA
 
 Route :: get( '/usuarios/nuevo', 'UserController@create' )
       -> name( 'users.create' );                               // Nombre de la ruta
+Route :: get( '/usuarios/{id}/editar', 'UserController@edit' )
+      -> name( 'users.edit' );
 Route :: post( '/usuarios', 'UserController@store' )           # <--- RUTAS IGUALES con DIFERENTE MÉTODO HTTP
       -> name( 'users.store' );
 
-# NOTA: Importante definir un estándar de nombres de ruta pary mantenerlo para todo el proyecto
+# NOTA: Importante definir un estándar de nombres de ruta para todo el proyecto
 
 /* PATH: /contacto */
 Route :: get( '/contacto', 'WelcomeController@contacto' )

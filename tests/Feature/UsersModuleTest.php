@@ -229,4 +229,14 @@ class UsersModuleTest extends TestCase
         $this -> assertEquals( 0 , User :: count() );       # Segunda alternativa para validar que el registro no se ha realizado
 
     }
+    /** @test */
+    function it_loads_the_edit_page() {
+        $this -> withoutExceptionHandling();    # Permitirá que los ERRORES se puedan visualizar en la terminal
+
+        $user = factory( User :: class ) -> create();
+
+        # /usuarios/editar?id=5
+        $this -> get( "/usuarios/{$user -> id}/editar" )        # /usuarios/5/editar
+              -> assertStatus( 200 );
+    }
 }

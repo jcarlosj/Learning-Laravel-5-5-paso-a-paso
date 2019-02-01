@@ -61,4 +61,9 @@ class UserController extends Controller
 
         return redirect( route( 'users.index' ) );
     }
+
+    public function edit()
+    {
+
+    }
 }
