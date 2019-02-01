@@ -25,7 +25,7 @@ Route :: get( '/usuarios', 'UserController@index' )            # <--- RUTAS IGUA
 
 Route :: get( '/usuarios/nuevo', 'UserController@create' )
       -> name( 'users.create' );                               // Nombre de la ruta
-Route :: get( '/usuarios/{id}/editar', 'UserController@edit' )
+Route :: get( '/usuarios/{user}/editar', 'UserController@edit' )
       -> name( 'users.edit' );
 Route :: post( '/usuarios', 'UserController@store' )           # <--- RUTAS IGUALES con DIFERENTE MÉTODO HTTP
       -> name( 'users.store' );

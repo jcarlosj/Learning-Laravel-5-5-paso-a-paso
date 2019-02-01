@@ -62,8 +62,8 @@ class UserController extends Controller
         return redirect( route( 'users.index' ) );
     }
 
-    public function edit()
+    public function edit( User $user )
     {
-        return view( 'users.edit', [ 'user' => 'Hey estamos en la vista editar!' ] );    # Retorna la vista a la que se le pasa la variable 'user' como parámetro
+        return view( 'users.edit', [ 'user' => $user ] );    # Retorna la vista a la que se le pasa la variable 'user' como parámetro
     }
 }
