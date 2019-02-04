@@ -66,4 +66,14 @@ class UserController extends Controller
     {
         return view( 'users.edit', [ 'user' => $user ] );    # Retorna la vista a la que se le pasa la variable 'user' como parámetro
     }
+
+    public function update( User $user )
+    {
+        $data = request() -> all();        # Obtendo todos los datos del formulario
+        $data[ 'password' ] = bcrypt( $data[ 'password' ] );    # Encripto la contraseña
+        $user -> update( $data );          # Actualiza registro enviando un Array Asociativo con los datos a actualizar
+
+        #return redirect( "usuarios/{$user -> id}" );
+        return redirect() -> route( 'users.show', [ 'user' => $user ] );
+    }
 }

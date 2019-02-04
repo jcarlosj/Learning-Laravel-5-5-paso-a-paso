@@ -244,4 +244,25 @@ class UsersModuleTest extends TestCase
                   return $viewUser -> id == $user -> id;
               });
     }
+    /** @test */
+    function it_updates_a_new_user() {
+
+        $this -> withoutExceptionHandling();    # Permitirá que los ERRORES se puedan visualizar en la terminal
+        $user = factory( User :: class ) -> create();
+
+
+        # Simula el envio de los datos por el método PUT a través del formulario
+        $this -> put( "/usuarios/{$user -> id}", [           # Simula petición PUT a la URL /usuarios/<id-del-usuario>
+            'name' => 'Juan Carlos Jiménez Gutiérrez',       # Datos enviados
+            'email' => 'jcjimenez29@misena.edu.co',
+            'password' => 'laravel'
+        ]) -> assertRedirect( "/usuarios/{$user -> id}" );   # Verifica que haya una redirección al listado de usuarios usando el Helper Rout para hacerlo (Usuario ya editado)
+
+        # Valida datos contra la base de datos
+        $this -> assertCredentials([                        # El método assertCredentials() no requiere el nombre de la tabla siempre que usemos la tabla por defecto de la instalación de Laravel
+            'name' => 'Juan Carlos Jiménez Gutiérrez',      # Campos/Columnas y los valores que esperamos encontrar
+            'email' => 'jcjimenez29@misena.edu.co',
+            'password' => 'laravel'                         # El método assertCredentials() perminte validad la contraseña de un usuario cosa que el método assertDatabaseHas() no permite. Además sin usar el método de encriptación.
+        ]);
+    }
 }

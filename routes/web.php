@@ -27,6 +27,8 @@ Route :: get( '/usuarios/nuevo', 'UserController@create' )
       -> name( 'users.create' );                               // Nombre de la ruta
 Route :: get( '/usuarios/{user}/editar', 'UserController@edit' )
       -> name( 'users.edit' );
+Route :: put( '/usuarios/{user}', 'UserController@update' )
+    -> name( 'users.update' );
 Route :: post( '/usuarios', 'UserController@store' )           # <--- RUTAS IGUALES con DIFERENTE MÉTODO HTTP
       -> name( 'users.store' );
 
