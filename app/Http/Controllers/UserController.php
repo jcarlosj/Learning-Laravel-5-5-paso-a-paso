@@ -69,7 +69,14 @@ class UserController extends Controller
 
     public function update( User $user )
     {
-        $data = request() -> all();        # Obtendo todos los datos del formulario
+        $data = request() -> validate([
+            'name' => 'required',
+            'email' => '',
+            'password' => ''
+        ], [
+            'name.required'  => 'El nombre es obligatorio!'
+        ]);        # Obtendo todos los datos del formulario
+        
         $data[ 'password' ] = bcrypt( $data[ 'password' ] );    # Encripto la contraseña
         $user -> update( $data );          # Actualiza registro enviando un Array Asociativo con los datos a actualizar
 

@@ -229,6 +229,7 @@ class UsersModuleTest extends TestCase
         $this -> assertEquals( 0 , User :: count() );       # Segunda alternativa para validar que el registro no se ha realizado
 
     }
+    /***  ONLY UPDATE  ***/
     /** @test */
     function it_loads_the_edit_page() {
         $this -> withoutExceptionHandling();    # Permitirá que los ERRORES se puedan visualizar en la terminal
@@ -265,4 +266,27 @@ class UsersModuleTest extends TestCase
             'password' => 'laravel'                         # El método assertCredentials() perminte validad la contraseña de un usuario cosa que el método assertDatabaseHas() no permite. Además sin usar el método de encriptación.
         ]);
     }
+    /** @test */
+    function the_name_is_required_when_updating_a_user() {
+        #$this -> withoutExceptionHandling();    # Permitirá que los ERRORES se puedan visualizar en la terminal
+
+        $user = factory( User :: class ) -> create();
+
+        # Envia petición de tipo post sin el campo requerido
+        $this -> from( "usuarios/{$user -> id}/editar" )                        # Indica URL de origen de la petición
+              -> put( "/usuarios/{$user -> id}", [                              # Indica tipo de petición y ruta a la que se lanza la petición
+                   'name' => '',
+                   'email' => 'melisasanchezz@correo.co',
+                   'password' => 'laravel'
+              ]) -> assertRedirect( "usuarios/{$user -> id}/editar" )           # La petición espera una redirección a la URL /usuarios/nuevo (el formulario de registro)
+                 -> assertSessionHasErrors([                     # Espera la existencia de un campo en el listado de errores de la sesión (en este caso el campo requerido)
+                      'name'  => 'El nombre es obligatorio!'
+                 ]);
+
+        # Valida que la base de datos no registro este usuario con correo
+        $this -> assertDatabaseMissing( 'users', [         # Nombre de la tabla donde deseamos validar el registro
+            'email' => 'melisasanchezz@correo.co'          # Email: que se espera no encontrar dentro de los registros en la base de datos
+        ]);
+    }
+
 }
