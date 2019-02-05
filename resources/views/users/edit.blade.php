@@ -12,7 +12,8 @@
         </div>
     @endif
 
-    <form action="{{ url( 'usuarios' ) }}" method="post">
+    <form action="{{ url( "usuarios/{$user->id}" ) }}" method="post">
+        {!! method_field( 'PUT' ) !!}         {{-- Agrega campo oculto con el nombre _method y el valor PUT --}}
         {!! csrf_field() !!}
         <label for="name">Nombre</label>
         <input id="name" type="text" name="name" placeholder="Ej: Juliana Puerta" value="{{ old( 'name', $user -> name ) }}">
