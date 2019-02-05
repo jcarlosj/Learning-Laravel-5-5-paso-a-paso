@@ -71,12 +71,14 @@ class UserController extends Controller
     {
         $data = request() -> validate([
             'name' => 'required',
-            'email' => '',
+            'email' => [ 'required', 'email' ],
             'password' => ''
         ], [
-            'name.required'  => 'El nombre es obligatorio!'
+            'name.required'  => 'El nombre es obligatorio!',
+            'email.required' => 'El correo electrónico es obligatorio!',
+            'email.email' => 'No es un correo electrónico válido!'
         ]);        # Obtendo todos los datos del formulario
-        
+
         $data[ 'password' ] = bcrypt( $data[ 'password' ] );    # Encripto la contraseña
         $user -> update( $data );          # Actualiza registro enviando un Array Asociativo con los datos a actualizar
 
