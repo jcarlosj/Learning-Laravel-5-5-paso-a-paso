@@ -370,5 +370,73 @@ class UsersModuleTest extends TestCase
         ]);
 
     }
+    /** @test */
+    function the_password_is_required_when_updating_the_user() {
+        #$this -> withoutExceptionHandling();    # Permitirá que los ERRORES se puedan visualizar en la terminal
 
+        $user = factory( User :: class ) -> create();
+
+        # Envia petición de tipo post sin el campo requerido
+        $this -> from( "usuarios/{$user -> id}/editar" )                        # Indica URL de origen de la petición
+              -> put( "/usuarios/{$user -> id}", [                              # Indica tipo de petición y ruta a la que se lanza la petición
+                   'name' => 'Melisa Sánchez Zambrano',
+                   'email' => 'melisasanchezz@correo.co',                       #
+                   'password' => ''
+              ]) -> assertRedirect( "usuarios/{$user -> id}/editar" )           # La petición espera una redirección a la URL /usuarios/nuevo (el formulario de registro)
+                 -> assertSessionHasErrors([                     # Espera la existencia de un campo en el listado de errores de la sesión (en este caso el campo requerido)
+                      'password' => 'La contraseña es obligatoria!'
+                 ]);
+
+        # Valida que la base de datos no registro este usuario
+        $this -> assertDatabaseMissing( 'users', [         # Nombre de la tabla donde deseamos validar el registro
+            'email' => 'melisasanchezz@correo.co'            # name: que se espera no encontrar dentro de los registros en la base de datos
+        ]);
+
+    }
+    /** @test */
+    function it_password_must_be_min_size_seven_characters_when_updating_the_user() {
+        #$this -> withoutExceptionHandling();    # Permitirá que los ERRORES se puedan visualizar en la terminal
+
+        $user = factory( User :: class ) -> create();
+
+        # Envia petición de tipo post sin el campo requerido
+        $this -> from( "usuarios/{$user -> id}/editar" )                        # Indica URL de origen de la petición
+              -> put( "/usuarios/{$user -> id}", [                              # Indica tipo de petición y ruta a la que se lanza la petición
+                   'name' => 'Melisa Sánchez Zambrano',
+                   'email' => 'melisasanchezz@correo.co',                       #
+                   'password' => '2deE2'                                        # Solo tiene 5 caracteres y mínimo debe tener 7 caracteres
+              ]) -> assertRedirect( "usuarios/{$user -> id}/editar" )           # La petición espera una redirección a la URL /usuarios/nuevo (el formulario de registro)
+                 -> assertSessionHasErrors([                     # Espera la existencia de un campo en el listado de errores de la sesión (en este caso el campo requerido)
+                      'password' => 'La contraseña debe tener mínimo 7 caracteres!'
+                 ]);
+
+        # Valida que la base de datos no registro este usuario
+        $this -> assertDatabaseMissing( 'users', [         # Nombre de la tabla donde deseamos validar el registro
+            'email' => 'melisasanchezz@correo.co'            # name: que se espera no encontrar dentro de los registros en la base de datos
+        ]);
+
+    }
+    /** @test */
+    function it_password_must_be_alphanumeric_when_updating_the_user() {
+        #$this -> withoutExceptionHandling();    # Permitirá que los ERRORES se puedan visualizar en la terminal
+
+        $user = factory( User :: class ) -> create();
+
+        # Envia petición de tipo post sin el campo requerido
+        $this -> from( "usuarios/{$user -> id}/editar" )                        # Indica URL de origen de la petición
+              -> put( "/usuarios/{$user -> id}", [                              # Indica tipo de petición y ruta a la que se lanza la petición
+                   'name' => 'Melisa Sánchez Zambrano',
+                   'email' => 'melisasanchezz@correo.co',                       #
+                   'password' => '#er2?_3s'                      # No es alfanumérico
+              ]) -> assertRedirect( "usuarios/{$user -> id}/editar" )           # La petición espera una redirección a la URL /usuarios/nuevo (el formulario de registro)
+                 -> assertSessionHasErrors([                     # Espera la existencia de un campo en el listado de errores de la sesión (en este caso el campo requerido)
+                      'password'  => 'La contraseña debe ser alfanumérica!'
+                 ]);
+
+        # Valida que la base de datos no registro este usuario
+        $this -> assertDatabaseMissing( 'users', [         # Nombre de la tabla donde deseamos validar el registro
+            'email' => 'melisasanchezz@correo.co'            # name: que se espera no encontrar dentro de los registros en la base de datos
+        ]);
+        
+    }
 }
