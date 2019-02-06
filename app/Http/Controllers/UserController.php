@@ -72,13 +72,13 @@ class UserController extends Controller
         $data = request() -> validate([
             'name' => 'required',
             'email' => [ 'required', 'email' ],
-            'password' => '', # [ 'min:7', 'alpha_num' ]
+            'password' => [ 'nullable', 'min:7', 'alpha_num' ]
         ], [
             'name.required'  => 'El nombre es obligatorio!',
             'email.required' => 'El correo electrónico es obligatorio!',
-            'email.email' => 'No es un correo electrónico válido!'/*,
+            'email.email' => 'No es un correo electrónico válido!',
             'password.min' => 'La contraseña debe tener mínimo 7 caracteres!',
-            'password.alpha_num'  => 'La contraseña debe ser alfanumérica!'*/
+            'password.alpha_num'  => 'La contraseña debe ser alfanumérica!'
 
         ]);        # Obtendo todos los datos del formulario
 
