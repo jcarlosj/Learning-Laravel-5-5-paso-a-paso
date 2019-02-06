@@ -72,18 +72,24 @@ class UserController extends Controller
         $data = request() -> validate([
             'name' => 'required',
             'email' => [ 'required', 'email' ],
-            'password' => [ 'required', 'min:7', 'alpha_num' ],
+            'password' => '', # [ 'min:7', 'alpha_num' ]
         ], [
             'name.required'  => 'El nombre es obligatorio!',
             'email.required' => 'El correo electrónico es obligatorio!',
-            'email.email' => 'No es un correo electrónico válido!',
-            'password.required' => 'La contraseña es obligatoria!',
+            'email.email' => 'No es un correo electrónico válido!'/*,
             'password.min' => 'La contraseña debe tener mínimo 7 caracteres!',
-            'password.alpha_num'  => 'La contraseña debe ser alfanumérica!'
+            'password.alpha_num'  => 'La contraseña debe ser alfanumérica!'*/
 
         ]);        # Obtendo todos los datos del formulario
 
-        $data[ 'password' ] = bcrypt( $data[ 'password' ] );    # Encripto la contraseña
+        if( $data[ 'password' ] != null ) {
+            $data[ 'password' ] = bcrypt( $data[ 'password' ] );    # Encripto la contraseña
+        }
+        else {
+            unset( $data[ 'password' ] );    # Eliminamos el índice del Array Asociativo $data
+        }
+
+
         $user -> update( $data );          # Actualiza registro enviando un Array Asociativo con los datos a actualizar
 
         #return redirect( "usuarios/{$user -> id}" );

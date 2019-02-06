@@ -371,25 +371,27 @@ class UsersModuleTest extends TestCase
 
     }
     /** @test */
-    function the_password_is_required_when_updating_the_user() {
+    function the_password_is_optional_when_updating_the_user() {
+        $old_password = 'CLAVE_ANTERIOR';
         #$this -> withoutExceptionHandling();    # Permitirá que los ERRORES se puedan visualizar en la terminal
 
-        $user = factory( User :: class ) -> create();
+        $user = factory( User :: class ) -> create([
+            'password' => bcrypt( $old_password )
+        ]);
 
         # Envia petición de tipo post sin el campo requerido
         $this -> from( "usuarios/{$user -> id}/editar" )                        # Indica URL de origen de la petición
               -> put( "/usuarios/{$user -> id}", [                              # Indica tipo de petición y ruta a la que se lanza la petición
                    'name' => 'Melisa Sánchez Zambrano',
-                   'email' => 'melisasanchezz@correo.co',                       #
+                   'email' => 'melisasanchezz@correo.co',
                    'password' => ''
-              ]) -> assertRedirect( "usuarios/{$user -> id}/editar" )           # La petición espera una redirección a la URL /usuarios/nuevo (el formulario de registro)
-                 -> assertSessionHasErrors([                     # Espera la existencia de un campo en el listado de errores de la sesión (en este caso el campo requerido)
-                      'password' => 'La contraseña es obligatoria!'
-                 ]);
+              ]) -> assertRedirect( "usuarios/{$user -> id}" );  # La petición espera una redirección a la URL /usuarios (users.show)
 
-        # Valida que la base de datos no registro este usuario
-        $this -> assertDatabaseMissing( 'users', [         # Nombre de la tabla donde deseamos validar el registro
-            'email' => 'melisasanchezz@correo.co'            # name: que se espera no encontrar dentro de los registros en la base de datos
+        # Valida que la base de datos no registro este usuario con la clave antigua
+        $this -> assertCredentials([         # Nombre de la tabla donde deseamos validar el registro
+            'name' => 'Melisa Sánchez Zambrano',
+            'email' => 'melisasanchezz@correo.co',           # name: que se espera no encontrar dentro de los registros en la base de datos
+            'password' => $old_password                      # MUY IMPORTANTE!
         ]);
 
     }
@@ -437,6 +439,6 @@ class UsersModuleTest extends TestCase
         $this -> assertDatabaseMissing( 'users', [         # Nombre de la tabla donde deseamos validar el registro
             'email' => 'melisasanchezz@correo.co'            # name: que se espera no encontrar dentro de los registros en la base de datos
         ]);
-        
+
     }
 }
