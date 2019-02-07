@@ -371,6 +371,30 @@ class UsersModuleTest extends TestCase
 
     }
     /** @test */
+    function the_email_can_stay_the_same_when_updating_the_user() {
+        $same_email = 'melisasanchezz@correo.co';
+        #$this -> withoutExceptionHandling();    # Permitirá que los ERRORES se puedan visualizar en la terminal
+
+        $user = factory( User :: class ) -> create([
+            'email' => $same_email
+        ]);
+
+        # Envia petición de tipo post sin el campo requerido
+        $this -> from( "usuarios/{$user -> id}/editar" )                        # Indica URL de origen de la petición
+              -> put( "/usuarios/{$user -> id}", [                              # Indica tipo de petición y ruta a la que se lanza la petición
+                   'name' => 'Melisa Sánchez Zambrano',
+                   'email' => $same_email,
+                   'password' => '123456789'
+              ]) -> assertRedirect( "usuarios/{$user -> id}" );  # La petición espera una redirección a la URL /usuarios (users.show)
+
+        # Valida que la base de datos no registro este usuario
+        $this -> assertDatabaseHas( 'users', [         # Nombre de la tabla donde deseamos validar el registro
+            'name' => 'Melisa Sánchez Zambrano',
+            'email' => $same_email                     # name: que se espera no encontrar dentro de los registros en la base de datos
+        ]);
+
+    }
+    /** @test */
     function the_password_is_optional_when_updating_the_user() {
         $old_password = 'CLAVE_ANTERIOR';
         #$this -> withoutExceptionHandling();    # Permitirá que los ERRORES se puedan visualizar en la terminal
