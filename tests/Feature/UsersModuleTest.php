@@ -344,11 +344,10 @@ class UsersModuleTest extends TestCase
     /** @test */
     function the_email_must_be_unique_when_updating_the_user() {
 
-        self :: markTestIncomplete();                      # Marca como prueba incompleta
-        return;                                            # Detiene la ejecución
-
         #$this -> withoutExceptionHandling();    # Permitirá que los ERRORES se puedan visualizar en la terminal
-
+        factory( User :: class ) -> create([
+            'email' => 'correo-existente@gmail.com'
+        ]);
         $user = factory( User :: class ) -> create([
             'email' => 'melisasanchezz@correo.co'                               # Correo valido inicial
         ]);
@@ -357,7 +356,7 @@ class UsersModuleTest extends TestCase
         $this -> from( "usuarios/{$user -> id}/editar" )                        # Indica URL de origen de la petición
               -> put( "/usuarios/{$user -> id}", [                              # Indica tipo de petición y ruta a la que se lanza la petición
                    'name' => 'Melisa Sánchez Zambrano',
-                   'email' => 'melisasanchezz@correo.co',                       #
+                   'email' => 'correo-existente@gmail.com',                       #
                    'password' => 'laravel'
               ]) -> assertRedirect( "usuarios/{$user -> id}/editar" )           # La petición espera una redirección a la URL /usuarios/nuevo (el formulario de registro)
                  -> assertSessionHasErrors([                     # Espera la existencia de un campo en el listado de errores de la sesión (en este caso el campo requerido)
@@ -365,9 +364,9 @@ class UsersModuleTest extends TestCase
                  ]);
 
         # Valida que la base de datos no registro este usuario
-        $this -> assertDatabaseMissing( 'users', [         # Nombre de la tabla donde deseamos validar el registro
-            'name' => 'Melisa Sánchez Zambrano'            # name: que se espera no encontrar dentro de los registros en la base de datos
-        ]);
+        #$this -> assertDatabaseMissing( 'users', [         # Nombre de la tabla donde deseamos validar el registro
+        #    'name' => 'Melisa Sánchez Zambrano'            # name: que se espera no encontrar dentro de los registros en la base de datos
+        #]);
 
     }
     /** @test */
