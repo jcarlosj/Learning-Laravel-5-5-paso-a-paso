@@ -71,7 +71,8 @@ class UserController extends Controller
     {
         $data = request() -> validate([
             'name' => 'required',
-            'email' => [ 'required', 'email', 'unique:users,email' ],
+            'email' => [ 'required', 'email', "unique:users,email,{$user -> id}" ],    # Excluir el usuario actual (Formato Array Asociativo)
+            #'email' => 'required|email|unique:users,email,' .$user -> id,             # Excluir el usuario actual (Formato Lineal)
             'password' => [ 'nullable', 'min:7', 'alpha_num' ]
         ], [
             'name.required'  => 'El nombre es obligatorio!',
