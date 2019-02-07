@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\User;
 
 class UserController extends Controller
@@ -71,7 +72,8 @@ class UserController extends Controller
     {
         $data = request() -> validate([
             'name' => 'required',
-            'email' => [ 'required', 'email', "unique:users,email,{$user -> id}" ],    # Excluir el usuario actual (Formato Array Asociativo)
+            'email' => ['required', 'email', Rule :: unique( 'users' ) -> ignore( $user -> id ) ], # Excluir el usuario actual (Formato Orientado a Objetos usando el Facade Rule)
+            #'email' => [ 'required', 'email', "unique:users,email,{$user -> id}" ],    # Excluir el usuario actual (Formato Array Asociativo)
             #'email' => 'required|email|unique:users,email,' .$user -> id,             # Excluir el usuario actual (Formato Lineal)
             'password' => [ 'nullable', 'min:7', 'alpha_num' ]
         ], [
