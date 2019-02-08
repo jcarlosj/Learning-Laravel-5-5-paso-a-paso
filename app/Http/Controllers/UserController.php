@@ -99,4 +99,10 @@ class UserController extends Controller
         #return redirect( "usuarios/{$user -> id}" );
         return redirect() -> route( 'users.show', [ 'user' => $user ] );
     }
+
+    function destroy( User $user ) {
+        $user -> delete();     # Eliminamos el usuario usando el Route Model Binding de Laravel a través del Objeto de Eloquent
+
+        return redirect() -> route( 'users.index' );
+    }
 }
