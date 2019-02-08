@@ -4,13 +4,18 @@
 @section( 'content' )        {{-- Define la sección 'content' --}}
 
 <h2>{{ $title }}</h2>
+<p><a href="{{ route( 'users.create' ) }}">Crear usuario</a></p>
 <ul>
     @forelse ( $users as $key => $user )
         <li>
-            {{ $user -> name }}, <small>{{ $user -> email }}</small><br />
+            {{ $user -> name }}, <small>{{ $user -> email }}</small>
             <a href="{{ route( 'users.show', [ 'user' => $user -> id ] ) }}">Ver</a> | {{-- Forma 1: pasando explicitamente el ID del usuario en un Array Asociativo --}}
             <a href="{{ route( 'users.edit', [ 'user' => $user ] ) }}">Editar</a> |    {{-- Forma 2: pasando el objeto Eloquent en un Array Asociativo --}}
-            <a href="{{ route( 'users.delete', $user ) }}">Eliminar</a>                {{-- Forma 3: pasando solo el objeto Eloquent --}}    
+            <form action="{{ route( 'users.delete', $user ) }}" method="post">         {{-- Forma 3: pasando solo el objeto Eloquent (Redireccionando la acción usando el router de Delete) --}}
+                {!! method_field( 'DELETE' ) !!}                                       {{-- Agrega campo oculto con el nombre _method y el valor DELETE --}}
+                {!! csrf_field() !!}
+                <button type="submit">Eliminar</button>
+            </form>
         </li>
     @empty
         <li>No hay usuarios registrados</li>
