@@ -28,10 +28,11 @@ Route :: get( '/usuarios/nuevo', 'UserController@create' )
 Route :: get( '/usuarios/{user}/editar', 'UserController@edit' )
       -> name( 'users.edit' );
 Route :: put( '/usuarios/{user}', 'UserController@update' )
-    -> name( 'users.update' );
+      -> name( 'users.update' );
 Route :: post( '/usuarios', 'UserController@store' )           # <--- RUTAS IGUALES con DIFERENTE MÉTODO HTTP
       -> name( 'users.store' );
-
+Route :: delete( '/usuarios/{user}', 'UserController@destroy' )
+      -> name( 'users.delete' );
 # NOTA: Importante definir un estándar de nombres de ruta para todo el proyecto
 
 /* PATH: /contacto */
