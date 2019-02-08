@@ -7,8 +7,10 @@
 <ul>
     @forelse ( $users as $key => $user )
         <li>
-            {{ $user -> name }}, <small>{{ $user -> email }}</small>
-            <a href="{{ route( 'users.show', [ 'id' => $user -> id ] ) }}">Ver detalles</a>
+            {{ $user -> name }}, <small>{{ $user -> email }}</small><br />
+            <a href="{{ route( 'users.show', [ 'user' => $user -> id ] ) }}">Ver</a> | {{-- Forma 1: pasando explicitamente el ID del usuario en un Array Asociativo --}}
+            <a href="{{ route( 'users.edit', [ 'user' => $user ] ) }}">Editar</a> |    {{-- Forma 2: pasando el objeto Eloquent en un Array Asociativo --}}
+            <a href="{{ route( 'users.delete', $user ) }}">Eliminar</a>                {{-- Forma 3: pasando solo el objeto Eloquent --}}    
         </li>
     @empty
         <li>No hay usuarios registrados</li>
