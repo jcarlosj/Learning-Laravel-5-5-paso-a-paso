@@ -464,4 +464,18 @@ class UsersModuleTest extends TestCase
         ]);
 
     }
+    /** @test */
+    function it_deletes_a_user() {
+        $this -> withoutExceptionHandling();    # Permitirá que los ERRORES se puedan visualizar en la terminal
+
+        $user = factory( User :: class ) -> create();
+
+        $this -> delete( "/usuarios/{$user -> id}" )
+              -> assertRedirect( 'usuarios' );
+
+        $this -> assertDatabaseMissing( 'users', [          # Alternativa 1
+            'id' => $user -> id
+        ]);
+        # $this -> assertSame( 0, User :: count() );        # Alternativa 2
+    }
 }
